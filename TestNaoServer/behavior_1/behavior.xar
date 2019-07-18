@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ChoregrapheProject xmlns="http://www.aldebaran-robotics.com/schema/choregraphe/project.xsd" xar_version="3">
+    <Box name="root" id="-1" localization="8" tooltip="Root box of Choregraphe&apos;s behavior. Highest level possible." x="0" y="0">
+        <bitmap>media/images/box/root.png</bitmap>
+        <script language="4">
+            <content>
+                <![CDATA[]]>
+</content>
+        </script>
+        <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+        <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+        <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+        <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+        <Timeline enable="0">
+            <BehaviorLayer name="behavior_layer1">
+                <BehaviorKeyframe name="keyframe1" index="1">
+                    <Diagram>
+                        <Box name="TestServer" id="1" localization="8" tooltip="" x="131" y="364">
+                            <bitmap>media/images/box/box-python-script.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[import urllib
+import mimetypes
+from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+
+
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        self.tts = ALProxy("ALTextToSpeech")
+    def onLoad(self):
+        #put initialization code here
+        pass
+
+    def onUnload(self):
+        self.running = 0
+        try:
+            self.httpServer.shutdown()
+            self.httpServer.socket.close()
+        except:
+            pass
+
+    def onInput_onStart(self):
+        #self.onStopped() #activate the output of the box
+        self.frameMgr = ALProxy("ALFrameManager")
+        self.htdocsPath = self.frameMgr.getBehaviorPath(self.behaviorId) + "/htdocs"
+        #self.tts.say(self.htdocsPath)
+        self.httpServer = Server(('', 8080), Handler)
+        self.httpServer.allow_reuse_address = True
+        self.httpServer.serve_forever(self.log, self.htdocsPath)
+
+        #self.tts.say("Meet Nao Greet Online")
+
+    def onInput_onStop(self):
+        self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
+        self.onStopped() #activate the output of the box
+
+class Server(HTTPServer):
+    def serve_forever(self,log,path):
+        self.RequestHandlerClass.htdocsPath = path
+        self.RequestHandlerClass.log = log
+        HTTPServer.serve_forever(self)
+
+class Handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path=="/":
+            self.path ="/index.html"
+
+        try:
+            sendReply = False
+            if self.path.endswith(".html"):
+                mimeType='text.html'
+                sendReply = True
+            if self.path.endswith(".js"):
+                mimeType = 'application/javascript'
+                sendRepy = True
+            if self.path.endswith(".css"):
+                mimeType='text/css'
+                sendReply = True
+
+
+            filePath = self.htdocsPath + self.path
+            path = urllib.unquote(urllib.unquote(self.path))
+            path = path.split("?")[0]
+
+            fileHndl = open(filePath, "r")
+            #mimeType = mimetypes.guess_type(filePath)[0]
+
+            self.send_response(200)
+            self.send_header("Content-type", mimeType)
+            self.end_headers()
+
+            fileText = fileHndl.read()
+            self.wfile.write(fileText)
+        except IOError:
+            self.send_error(404, 'File Not Found: %s' % self.path)
+
+    def do_POST(self):
+        self.send_error(500, 'Internal Error')
+
+    def address_string(self):
+        host, port = self.client_address[:2]
+        return host]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                        </Box>
+                        <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" />
+                    </Diagram>
+                </BehaviorKeyframe>
+            </BehaviorLayer>
+        </Timeline>
+    </Box>
+</ChoregrapheProject>
