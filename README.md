@@ -2,6 +2,10 @@
 
 `aNAOmate` is an web-based interface for controlling SoftBank's Aldebaran Nao (V5/V6) robots.
 
+## Objectives
+
+TODO()
+
 ## Start and Connect to Robot
 
 To connect to the robot:
@@ -23,7 +27,27 @@ To connect to the robot:
 
 ## Behaviours
 
+## Configure Development Environment
+
+```sh
+# Configure and activate virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Upgrade Pip
+pip install --upgrade pip
+
+# Install requirements
+pip install -r requirements.txt
+```
+
 * Example behaviour
+
+## Tests
+
+```sh
+TODO runscript for testing
+```
 
 ## Authors
 
@@ -32,6 +56,9 @@ To connect to the robot:
 * **Kory Mathewson** - [Website](https://korymathewson.com)
 
 See also the list of [contributors](https://github.com/QuinnyB/aNAOmate/contributors) who participated in this project.
+
+## Start Contributing
+The guide for contributors can be found [here](https://github.com/QuinnyB/aNAOmate/blob/master/CONTRIBUTING.md). It covers everything you need to know to start contributing to `aNAOmate`.
 
 ## License
 

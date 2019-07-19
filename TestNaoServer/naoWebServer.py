@@ -45,7 +45,7 @@ class MyClass(GeneratedClass):
 
     def onUnload(self):
         self.running = 0
-        try:  
+        try:
             self.httpServer.shutdown()
             self.httpServer.socket.close()
         except:
