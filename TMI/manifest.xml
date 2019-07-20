@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package version="0.0.4" uuid="TMI">
+ <names>
+  <name lang="en_US">TMI</name>
+  <name lang="fr_FR">servicedriven</name>
+ </names>
+ <supportedLanguages>
+  <language>en_US</language>
+ </supportedLanguages>
+ <descriptionLanguages>
+  <language>en_US</language>
+ </descriptionLanguages>
+ <contents/>
+ <requirements>
+  <naoqiRequirement minVersion="2.3"/>
+  <robotRequirement/>
+ </requirements>
+ <services>
+  <service autorun="true" execStart="/usr/bin/python2 services/appservice.py" name="AppService"/>
+ </services>
+</package>
