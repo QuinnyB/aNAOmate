@@ -54,6 +54,7 @@ TODO runscript for testing
 * **Quinn Boser** - [Website](#)
 * **Riley Dawson** - [Website](#)
 * **Kory Mathewson** - [Website](https://korymathewson.com)
+* **Josh Whitney** - [Website](#)
 
 See also the list of [contributors](https://github.com/QuinnyB/aNAOmate/contributors) who participated in this project.
 
@@ -72,3 +73,4 @@ The authors of this project would like to graciously acknowledge to continued su
 
 * Example reference.
 * https://www.cs.utexas.edu/~pstone/Courses/393Rfall13/resources/nao.html#care
+
