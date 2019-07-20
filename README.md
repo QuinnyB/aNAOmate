@@ -2,6 +2,14 @@
 
 `aNAOmate` is an web-based interface for controlling SoftBank's Aldebaran Nao (V5/V6) robots.
 
+## Quick Testing Instructions
+
+1. Connect to the same network as the robot
+2. Navigate to path TMI\html\
+3. Run python -m simpleHTTPServer 8000
+4. Open internet browser to localhost:8000
+5. Add "?robot=[IP address of robot]" to web address 
+
 ## Objectives
 
 TODO()
