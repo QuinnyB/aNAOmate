@@ -54,6 +54,7 @@ TODO runscript for testing
 * **Quinn Boser** - [Website](#)
 * **Riley Dawson** - [Website](#)
 * **Kory Mathewson** - [Website](https://korymathewson.com)
+* **Josh Whitney** - [Website](#)
 
 See also the list of [contributors](https://github.com/QuinnyB/aNAOmate/contributors) who participated in this project.
 
