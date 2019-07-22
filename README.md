@@ -28,7 +28,7 @@ tar -xvzf pynaoqi-python2.7-2.1.4.13-mac64.tar.gz
 
 # Update the boost / dynamic library paths
 # install_name_tool
-target_path=/Users/korymathewson/work/nao/pynaoqi-python2.7-2.1.4.13-mac64
+target_path="$PWD/pynaoqi-python2.7-2.1.4.13-mac64"
 export PYTHONPATH=${PYTHONPATH}:${target_path}
 export PATH=${PATH}:/Users/korymathewson/Library/Python/2.7/bin
 export DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH}:${target_path}
@@ -49,6 +49,8 @@ for lib in $target_path/*.so; do
   done
 done
 
+# Remove the path
+rm -rf ${target_path}
 ```
 
 # Getting and Installing Choreographe
@@ -79,18 +81,6 @@ To connect to the robot:
 ## Behaviours
 
 ## Configure Development Environment
-
-```sh
-# Configure and activate virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Upgrade Pip
-pip install --upgrade pip
-
-# Install requirements
-pip install -r requirements.txt
-```
 
 * Example behaviour
 
@@ -124,4 +114,5 @@ The authors of this project would like to graciously acknowledge to continued su
 
 * Example reference.
 * https://www.cs.utexas.edu/~pstone/Courses/393Rfall13/resources/nao.html#care
+* https://developer.softbankrobotics.com/nao6/naoqi-developer-guide/sdks/former-versions/qimessaging-javascript-10#js-1-0-migrate
 

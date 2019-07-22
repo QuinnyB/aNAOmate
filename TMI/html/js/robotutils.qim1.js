@@ -155,6 +155,13 @@ RobotUtils = (function(self) {
 
     // public variables that can be useful.
     self.robotIp = _getRobotIp();
+
+    if (self.robotIp) {
+        console.log("Robot IP: " + self.robotIp)
+    } else {
+        console.log("No Robot IP set in URL")
+    }
+
     self.session = null;
 
     /*---------------------------------------------
