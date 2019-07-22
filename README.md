@@ -10,10 +10,6 @@
 4. Open internet browser to localhost:8000
 5. Add "?robot=[IP address of robot]" to web address
 
-## Objectives
-
-TODO()
-
 
 ## Start and Connect to Robot
 
