@@ -6,10 +6,37 @@
 
 TODO()
 
+## Start and Connect to Robot
+
+To connect to the robot:
+
+1. Plug in the robot and charge the battery.
+2. Plug in an ethernet cable to the robots head to ensure that it is on the same local network as the laptop.
+3. Push and hold the button on the front of the robots to power on.
+4. Once robot is awake (it will make a wake-up sound), push the button twice to relax the robot into a safe resting position.
+5. Push the front button once to get the name of the robot and the IP address.
+6. Navigate to this IP address on the laptop (which is on the same network)
+7. Log in to the robot administration webpage with admin credentials (nao/nao).
+8. Perform updates on the robot
+
+## Install aNAOmate on Robot
+
+## Access the aNAOmate interface
+
+## Using the aNAOmate interface
+
+## Behaviours
+
+## Configure Development Environment
+
+* Example behaviour
+
 ## NAO Python SDK Communication on Windows
 
 This repository uses a specific version of `pynaoqi` software. In order to use `pynaoqi`, download python version 2.7 (in the installer folder) using the Windows x86 MSI installer (NOT the 64 bit installer).
+
 During the install, make sure that you select the option to add python to the system path, and make sure pip is selected (should be by default).
+
 Install the python naoqi windows installer from the softbank website (in the installer folder). Ensure that python 2.7 is selected. (If it does not show up as an option, try restarting you computer. If still doesn't show up, then you may installed the 64 bit version.)
 
 ## NAO Python SDK Communication on OSX
@@ -59,37 +86,6 @@ rm -rf ${target_path}
 wget https://storage.googleapis.com/api-project-941639660937.appspot.com/choregraphe-suite-2.1.4.13-mac64-setup.dmg
 ```
 
-## Start and Connect to Robot
-
-To connect to the robot:
-
-1. Plug in the robot and charge the battery.
-2. Plug in an ethernet cable to the robots head to ensure that it is on the same local network as the laptop.
-3. Push and hold the button on the front of the robots to power on.
-4. Once robot is awake (it will make a wake-up sound), push the button twice to relax the robot into a safe resting position.
-5. Push the front button once to get the name of the robot and the IP address.
-6. Navigate to this IP address on the laptop (which is on the same network)
-7. Log in to the robot admin with admin credentials (nao/nao).
-8. Perform updates on the robot
-
-## Install aNAOmate on Robot
-
-## Access the aNAOmate interface
-
-## Using the aNAOmate interface
-
-## Behaviours
-
-## Configure Development Environment
-
-* Example behaviour
-
-## Tests
-
-```sh
-TODO runscript for testing
-```
-
 ## Authors
 
 * **Quinn Boser** - [Website](#)
@@ -97,7 +93,7 @@ TODO runscript for testing
 * **Kory Mathewson** - [Website](https://korymathewson.com)
 * **Josh Whitney** - [Website](#)
 
-See also the list of [contributors](https://github.com/QuinnyB/aNAOmate/contributors) who participated in this project.
+See the list of [contributors](https://github.com/QuinnyB/aNAOmate/contributors) who participated in this project.
 
 ## Start Contributing
 The guide for contributors can be found [here](https://github.com/QuinnyB/aNAOmate/blob/master/CONTRIBUTING.md). It covers everything you need to know to start contributing to `aNAOmate`.
@@ -112,7 +108,6 @@ The authors of this project would like to graciously acknowledge to continued su
 
 ## References
 
-* Example reference.
 * https://www.cs.utexas.edu/~pstone/Courses/393Rfall13/resources/nao.html#care
 * https://developer.softbankrobotics.com/nao6/naoqi-developer-guide/sdks/former-versions/qimessaging-javascript-10#js-1-0-migrate
 
