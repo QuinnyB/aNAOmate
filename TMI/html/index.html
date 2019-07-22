@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>aNAOmate</title>
+  <link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">NAO</span>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <form>
+        <div class="form-group">
+          <textarea class="form-control" id="historyTextArea" rows="10" placeholder="Input history"
+            readonly></textarea>
+
+          <div class="input-group mb-3">
+            <textarea id="inputTextArea" type="text" class="form-control" placeholder="Input"></textarea>
+            <div class="input-group-append">
+              <button id="sendInputButton" class="btn btn-outline-secondary" type="button">Go</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="float-right">
+        <button type="button" class="btn btn-outline-info">Wake</button>
+        <button type="button" class="btn btn-outline-info">Sleep</button>
+        <button type="button" class="btn btn-danger">STOP</button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/robotutils.qim1.js"></script>
+  <script src="js/main.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function (e) {
+      var app = application();
+    })
+  </script>
+
+</body>
+
+</html>
