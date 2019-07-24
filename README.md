@@ -10,7 +10,6 @@
 4. Open internet browser to localhost:8000
 5. Add "?robot=[IP address of robot]" to web address
 
-
 ## Start and Connect to Robot
 
 To connect to the robot:
@@ -24,15 +23,35 @@ To connect to the robot:
 7. Log in to the robot administration webpage with admin credentials (nao/nao).
 8. Perform updates on the robot
 
-## Install aNAOmate on Robot
+## Editing TMI (Touch Move Interface for the Nao Robot)
 
-## Access the aNAOmate interface
+1. Make changes in the `TMI` directory
+2. Test the changes by following the quick testing instructions.
+3. Once satisfied, ensure that all necessary files are linked in `TMI/TMI.pml`.
+4. Once links are complete, open the `TMI/TMI.pml` in Choregraphe
+5. `File -> Build Application Package` and save to the `package` directory.
+6. Once the package is saved, install on the robot. (Note: NAOqi must be properly installed on your system for the installation script to work)
+
+```sh
+/usr/bin/python package/install_pkg.py $ROBOT_IP $PACKAGE_FILE_NAME
+```
+
+7. Once the package is installed, you will see: `Installation complete.`
+8. The application interface is now running, and starts automatically by default.
+9. Navigate to `http://$ROBOT_IP/apps/TMI` to see developed the interface.
+10. This interface should match the tested changes in Step 2.
 
 ## Using the aNAOmate interface
 
+TODO
+
 ## Behaviours
 
+TODO
+
 ## Configure Development Environment
+
+TODO
 
 ## Authors
 
