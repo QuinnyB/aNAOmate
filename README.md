@@ -2,6 +2,9 @@
 
 `aNAOmate` is an web-based interface for controlling SoftBank's Aldebaran Nao (V5/V6) robots.
 
+[Slidedeck](https://docs.google.com/presentation/d/1Xc7OqAw_QCwlj7EUV_w8caj6bt-i0rDLMv9rSqkYeyo/edit#slide=id.p)
+
+
 ## Quick Testing Instructions
 
 1. Connect to the same network as the robot
@@ -34,7 +37,7 @@
 /usr/bin/python package/install_pkg.py $ROBOT_IP $PACKAGE_FILE_NAME
 ```
 
-7. Once the package is installed, you will see: `Installation complete.`
+7. Once the package is installed, you will see: `Installation complete.` (This installs the application to `/home/nao/.local/share/PackageManager/apps/TMI` and runs the application if `autorun="true"` in the [TMI/manifest](https://github.com/QuinnyB/aNAOmate/blob/master/TMI/manifest.xml)
 8. The application interface is now running, and starts automatically by default.
 9. Navigate to `http://$ROBOT_IP/apps/TMI` to see developed the interface.
 10. This interface should match the tested changes in Step 2.
