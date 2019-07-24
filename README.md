@@ -10,9 +10,7 @@
 4. Open internet browser to localhost:8000
 5. Add "?robot=[IP address of robot]" to web address
 
-## Start and Connect to Robot
-
-To connect to the robot:
+## Basic Robot Startup
 
 1. Plug in the robot and charge the battery.
 2. Plug in an ethernet cable to the robots head to ensure that it is on the same local network as the laptop.
