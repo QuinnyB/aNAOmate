@@ -1,9 +1,10 @@
 import os
+import sys
 
 import qi
 import paramiko
 
-ROBOT_URL = "192.168.1.113"
+ROBOT_URL = sys.argv[1]
 PKG_FILE = "TMI-0.0.3.pkg"
 
 print "Uploading package."
