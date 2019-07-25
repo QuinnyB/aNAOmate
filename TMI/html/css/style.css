@@ -24,7 +24,8 @@ textarea {
   text-align: center;
 }
 
-.bigfriendlybutton {
+/* Can we remove this now? */
+/* .bigfriendlybutton {
   border-radius: 25px;
   display: inline-block;
   width: 300px;
@@ -37,4 +38,41 @@ textarea {
   font-style: normal;
   font-weight: bold;
   line-height: 50px;
+} */
+
+.bordered-area {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+#historyBorder {
+  height: 300px;
+  border-bottom-right-radius: 0rem;
+  border-bottom-left-radius: 0rem;
+  border-bottom: none;
+  overflow: auto;
+}
+
+#historyList {
+  margin: 0px;
+}
+
+#historyPlaceholder td {
+  padding-left: 10px !important;
+}
+
+.table td, .table th {
+  border: none !important;
+  border-radius: 5px !important;
+}
+
+.table th {
+  color: grey;
+  width: 30px; /* This effectively is the minimum width */
+  padding-left: 10px !important;
+}
+
+#inputTextArea, #sendInputButton {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }

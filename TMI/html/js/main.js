@@ -35,7 +35,15 @@ function say(utterance) {
 
 function addToHistory(inputText) {
     // Add input text to history and go to next line
-    $("#historyTextArea").append(inputText + "&#13;&#10;");
+    $("#historyPlaceholder").remove();
+    var count = $("#historyList tbody").children().length;
+    $("#historyList tbody").append(
+        `<tr>
+            <th scope="row">` + (count + 1) + `</th>
+            <td>` + inputText + `</td>
+        </tr>`
+     );
+
 }
 
 function clearTextInput() {

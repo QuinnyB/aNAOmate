@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>aNAOmate</title>
-  <link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
+  <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
@@ -21,8 +21,23 @@
     <div class="container">
       <form>
         <div class="form-group">
-          <textarea class="form-control" id="historyTextArea" rows="10" placeholder="Input history"
-            readonly></textarea>
+          
+          <!-- <div class="list-group-borderfix">
+            <ol class="list-group" id="historyList">
+              <li class="list-group-item list-group-item-light border-0 active" id="historyPlaceholder">Input History</li>
+            </ol>
+          </div> -->
+
+          <div class="bordered-area" id="historyBorder">
+            <table class="table table-borderless table-sm" id="historyList">
+              <tbody>
+                <tr id="historyPlaceholder">
+                  <!-- <th scope="row"></th> -->
+                  <td>Input History</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <div class="input-group mb-3">
             <textarea id="inputTextArea" type="text" class="form-control" placeholder="Input"></textarea>
@@ -37,10 +52,13 @@
 
   <footer>
     <div class="container">
-      <div class="float-right">
+      <div class="float-left">
         <button type="button" class="btn btn-outline-info">Wake</button>
         <button type="button" class="btn btn-outline-info">Sleep</button>
         <button type="button" class="btn btn-danger">STOP</button>
+      </div>
+      <div class="float-right">
+        <button type="button" class="btn btn-success">Next</button>
       </div>
     </div>
   </footer>
