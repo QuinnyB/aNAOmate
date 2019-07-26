@@ -70,6 +70,13 @@ textarea {
   color: grey;
   width: 30px; /* This effectively is the minimum width */
   padding-left: 10px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.table td {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
 }
 
 #inputTextArea, #sendInputButton {
