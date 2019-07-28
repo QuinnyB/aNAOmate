@@ -1,9 +1,29 @@
-var application = function () {
-    this.robotReady = true; // State of robot, false if currently executing input
+var application = function () {   
+    this.useRobotUtils = true;
+    
+    if (robotIP != null) {
+        RobotUtils.onService(function (ALTextToSpeech) {
+        // Adding ALTextTpSpeech to global scope - should probably handle this better eventually
+            this.ALTextToSpeech = ALTextToSpeech;
 
-    RobotUtils.onService(function (ALTextToSpeech) {
-    // Adding ALTextTpSpeech to global scope - should probably handle this better eventually
-        this.ALTextToSpeech = ALTextToSpeech;
+            // Bind "Submit" input button callback
+            $("#sendInputButton").click(function () {
+                submitInput();
+            });
+
+            // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
+            $("#inputTextArea").keypress((event) => {
+                const keycode = (event.keyCode ? event.keyCode : event.which);
+                if (keycode == '13') {
+                    event.preventDefault();     // Prevent line return behaviour
+                    submitInput();
+                }
+            });
+
+        });
+    }
+    else {
+        this.useRobotUtils = false;
 
         // Bind "Submit" input button callback
         $("#sendInputButton").click(function () {
@@ -18,8 +38,9 @@ var application = function () {
                 submitInput();
             }
         });
+    }
 
-    });
+    this.robotReady = true; // State of robot, false if currently executing input
 }
 
 function submitInput() {
@@ -45,7 +66,18 @@ async function inputManager() {
         // No: Add it to first row and get inputText from first row
         activeRow = $("#historyList tbody tr").first()
     }
+
+    // scroll until the row is in view
+    const lineNum = activeRow.find('th').text();
+    const rows = document.querySelectorAll('#historyList tr');
+    const line = rows[lineNum-1];   
+    line.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+    });
+
     activeRow.addClass('table-info');
+
     await handleInput($("#historyList tbody .table-info td").text());
     // Check if there is a row below the current row in input history
     if (activeRow.next().length) {
@@ -69,6 +101,14 @@ function addToHistory(inputText) {
             <td>` + inputText + `</td>
         </tr>`
     );
+
+    // scroll until the row is in view
+    const rows = document.querySelectorAll('#historyList tr');
+    const line = rows[rows.length-1];   
+    line.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+    });
 }
 
 function clearTextInput() {
@@ -79,13 +119,17 @@ async function handleInput(inputText) {
     // const inputText = $("#inputTextArea").val();
     // console.log(inputText);
     // parseInput();
-    console.log('Taking a break...');
-    // await sleep(2000);
     await say(inputText);
 }
 
 async function say(utterance) {
-    await ALTextToSpeech.say(utterance);
+    if (this.useRobotUtils == true){
+        await ALTextToSpeech.say(utterance);
+    }
+    else {
+        console.log('processing...');
+        await sleep(2000);
+    }
     console.log(utterance);
 }
 
