@@ -80,12 +80,12 @@ async function handleInput(inputText) {
     // console.log(inputText);
     // parseInput();
     console.log('Taking a break...');
-    await sleep(2000);
-    say(inputText);
+    // await sleep(2000);
+    await say(inputText);
 }
 
-function say(utterance) {
-    ALTextToSpeech.say(utterance);
+async function say(utterance) {
+    await ALTextToSpeech.say(utterance);
     console.log(utterance);
 }
 
