@@ -1,59 +1,37 @@
-var application = function () {   
-    this.useRobotUtils = true;
+var application = function () {  
     
     if (robotIP != null) {
-        RobotUtils.onService(function (ALTextToSpeech) {
-        // Adding ALTextTpSpeech to global scope - should probably handle this better eventually
-            this.ALTextToSpeech = ALTextToSpeech;
-
-            // Bind "Submit" input button callback
-            $("#sendInputButton").click(function () {
-                submitInput();
-            });
-
-            // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
-            $("#inputTextArea").keypress((event) => {
-                const keycode = (event.keyCode ? event.keyCode : event.which);
-                if (keycode == '13') {
-                    event.preventDefault();     // Prevent line return behaviour
-                    submitInput();
-                }
-            });
-
-        });
+        this.robotController = new RobotController();
     }
     else {
-        this.useRobotUtils = false;
-
-        // Bind "Submit" input button callback
-        $("#sendInputButton").click(function () {
-            submitInput();
-        });
-
-        // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
-        $("#inputTextArea").keypress((event) => {
-            const keycode = (event.keyCode ? event.keyCode : event.which);
-            if (keycode == '13') {
-                event.preventDefault();     // Prevent line return behaviour
-                submitInput();
-            }
-        });
+        this.robotController = new FauxbotController();
     }
 
-    this.robotReady = true; // State of robot, false if currently executing input
+    // Bind "Submit" input button callback
+    $("#sendInputButton").click(function () {
+        submitInput();
+    });
+
+    // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
+    $("#inputTextArea").keypress((event) => {
+        const keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            event.preventDefault();     // Prevent line return behaviour
+            submitInput();
+        }
+    });
 }
 
 function submitInput() {
     const inputText = $("#inputTextArea").val();
     addToHistory(inputText);
     clearTextInput();
-    if (this.robotReady) {
+    if (this.robotController.robotReady) {
         inputManager();
     }
 }
 
 async function inputManager() {
-    this.robotReady = false;
     // Check if there is an active row in history table
     const lastActiveRow = $('.table-info');
     let activeRow;
@@ -85,8 +63,6 @@ async function inputManager() {
         inputManager();
     }
     else {
-        // No: this.robotReady = true
-        this.robotReady = true;
         console.log("Robot ready");
     }
 }
@@ -115,24 +91,9 @@ function clearTextInput() {
     $("#inputTextArea").val('').focus();
 }
 
-async function handleInput(inputText) {
+ function handleInput(inputText) {
     // const inputText = $("#inputTextArea").val();
     // console.log(inputText);
     // parseInput();
-    await say(inputText);
-}
-
-async function say(utterance) {
-    if (this.useRobotUtils == true){
-        await ALTextToSpeech.say(utterance);
-    }
-    else {
-        console.log('processing...');
-        await sleep(2000);
-    }
-    console.log(utterance);
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+     this.robotController.say(inputText);
 }
