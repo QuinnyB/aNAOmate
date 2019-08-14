@@ -5,7 +5,12 @@ function RobotController() {
         this.ALBehaviorManager = ALBehaviorManager;
     });
 
-    this.say = async function(utterance) {
+    this.getStatus = function() {
+        // TODO: need to query status of robot
+        //return this.robotReady;
+    }
+
+    this.say = function(utterance) {
         ALBehaviorManager.runBehavior("Stand/Emotions/Neutral/Hello_1");
         ALTextToSpeech.say(utterance);
         console.log(utterance);

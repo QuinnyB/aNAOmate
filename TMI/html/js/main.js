@@ -8,9 +8,7 @@ var application = function () {
     }
 
     // Bind "Submit" input button callback
-    $("#sendInputButton").click(function () {
-        submitInput();
-    });
+    $("#sendInputButton").click(submitInput);
 
     // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
     $("#inputTextArea").keypress((event) => {
@@ -26,7 +24,7 @@ function submitInput() {
     const inputText = $("#inputTextArea").val();
     addToHistory(inputText);
     clearTextInput();
-    if (this.robotController.robotReady) {
+    if (this.robotController.getStatus()) {
         inputManager();
     }
 }
@@ -45,7 +43,7 @@ async function inputManager() {
         activeRow = $("#historyList tbody tr").first()
     }
 
-    // scroll until the row is in view
+    // Scroll until the active row is in view
     const lineNum = activeRow.find('th').text();
     const rows = document.querySelectorAll('#historyList tr');
     const line = rows[lineNum-1];   
@@ -56,14 +54,21 @@ async function inputManager() {
 
     activeRow.addClass('table-info');
 
-    await handleInput($("#historyList tbody .table-info td").text());
+    handleInput($("#historyList tbody .table-info td").text());
+
+    // Wait for robot ready
+    while(!this.robotController.getStatus()) {
+        // Check every 100 milliseconds
+        await sleep(100);
+    }
+
     // Check if there is a row below the current row in input history
     if (activeRow.next().length) {
         // Yes: call self
         inputManager();
     }
     else {
-        console.log("Robot ready");
+        console.log("Reached End");
     }
 }
 
@@ -78,7 +83,7 @@ function addToHistory(inputText) {
         </tr>`
     );
 
-    // scroll until the row is in view
+    // Scroll until the new row is in view
     const rows = document.querySelectorAll('#historyList tr');
     const line = rows[rows.length-1];   
     line.scrollIntoView({
@@ -96,4 +101,8 @@ function clearTextInput() {
     // console.log(inputText);
     // parseInput();
      this.robotController.say(inputText);
+}
+
+async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
