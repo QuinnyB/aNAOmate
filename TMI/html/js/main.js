@@ -106,10 +106,26 @@ function clearTextInput() {
  function handleInput(inputText) {
     // const inputText = $("#inputTextArea").val();
     // console.log(inputText);
-    // parseInput();
-     this.robotController.say(inputText);
+    tokens = inputParse(inputText);
+    for (i=0;i<tokens.repitions;i++){
+        this.robotController.executeCommand(tokens.command);
+        this.robotController.animate(tokens.animation);
+    }
+    //  this.robotController.say(inputText);
 }
 
 async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+function inputParse(inputString) {
+
+    command = /(?<=\{).+?(?=\})/g.exec(inputString)
+
+    conditionals = /(?<=\().+?(?=\))/g.exec(inputString)
+    repitions = /(?<=\[).+?(?=\])/g.exec(inputString)
+    animation = inputString.replace(/\{.+\}/gi, "").replace(/ *\([^)]*\) */g,"").replace(/\[.+\]/gi,"")
+    
+    return  {"repitions":(repitions == undefined)? 1:repitions[0],"command":(command == undefined)?null:command[0].toLowerCase(),"animation":animation,"conditionals":(conditionals == undefined)?null:conditionals[0].split("|")};
+
+  }
