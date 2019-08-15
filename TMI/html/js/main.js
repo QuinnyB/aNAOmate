@@ -8,7 +8,7 @@ var application = function () {
     }
 
     // Bind "Submit" input button callback
-    $("#sendInputButton").click(submitInput);
+    $("#sendInputButton").click(() => submitInput());
 
     // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
     $("#inputTextArea").keypress((event) => {
@@ -20,13 +20,16 @@ var application = function () {
     });
 }
 
-function submitInput() {
+async function submitInput() {
     const inputText = $("#inputTextArea").val();
     addToHistory(inputText);
     clearTextInput();
-    if (this.robotController.getStatus()) {
-        inputManager();
-    }
+    
+    await this.robotController.getStatus().then(ready => {
+        if (ready) {
+            inputManager();  
+        }   
+    });
 }
 
 async function inputManager() {
@@ -57,10 +60,17 @@ async function inputManager() {
     handleInput($("#historyList tbody .table-info td").text());
 
     // Wait for robot ready
+    await sleep(500); // We have to wait half a second before calling getStatus
+
+    let ready = await this.robotController.getStatus();
+    console.log(ready);
+
     while(!this.robotController.getStatus()) {
         // Check every 100 milliseconds
+        console.log('busy');
         await sleep(100);
     }
+    console.log('ready');
 
     // Check if there is a row below the current row in input history
     if (activeRow.next().length) {

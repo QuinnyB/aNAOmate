@@ -5,9 +5,18 @@ function RobotController() {
         this.ALBehaviorManager = ALBehaviorManager;
     });
 
-    this.getStatus = function() {
-        // TODO: need to query status of robot
-        //return this.robotReady;
+    this.getStatus = async function() {
+        // Query status of robot
+        return await ALBehaviorManager.getRunningBehaviors()
+        .then(behaviorList => {
+            console.log(behaviorList);
+            const ready = !behaviorList.some(behavior => {
+                return behavior.includes('animations')
+            });
+
+            console.log('Ready: ' + ready);
+            return ready;
+        });
     }
 
     this.say = function(utterance) {
