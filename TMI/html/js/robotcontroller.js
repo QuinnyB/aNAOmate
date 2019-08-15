@@ -14,7 +14,6 @@ function RobotController() {
                 return behavior.includes('animations')
             });
 
-            console.log('Ready: ' + ready);
             return ready;
         });
     }

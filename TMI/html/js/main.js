@@ -25,11 +25,9 @@ async function submitInput() {
     addToHistory(inputText);
     clearTextInput();
     
-    await this.robotController.getStatus().then(ready => {
-        if (ready) {
-            inputManager();  
-        }   
-    });
+    if (await this.robotController.getStatus()) {
+        inputManager();  
+    } 
 }
 
 async function inputManager() {
@@ -63,12 +61,11 @@ async function inputManager() {
     await sleep(500); // We have to wait half a second before calling getStatus
 
     let ready = await this.robotController.getStatus();
-    console.log(ready);
-
-    while(!this.robotController.getStatus()) {
+    while(!ready) {
         // Check every 100 milliseconds
         console.log('busy');
         await sleep(100);
+        ready = await this.robotController.getStatus();
     }
     console.log('ready');
 
@@ -78,7 +75,7 @@ async function inputManager() {
         inputManager();
     }
     else {
-        console.log("Reached End");
+        //console.log("Reached End");
     }
 }
 
