@@ -9,10 +9,13 @@ var application = function () {
 
     // Bind "Submit" input button callback
     $("#sendInputButton").click(() => submitInput());
+
+    // Bind Next button TO DO: Fix this
     $(".btn-success").click(() => {
         this.paused = false;
         inputManager();
     });
+
     // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
     $("#inputTextArea").keydown((event) => {
         const keycode = (event.keyCode ? event.keyCode : event.which);

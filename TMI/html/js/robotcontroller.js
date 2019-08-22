@@ -79,6 +79,14 @@ function RobotController() {
         }else{
             ALAnimatedSpeech.say(speech);
         }
+
+<<<<<<< HEAD
+        if (speech.length > 0) {
+            ALTextToSpeech.say(speech);
+        }
+=======
+
+>>>>>>> a6015e75469715787620a4f956d91bf69e5034bf
     }
 
     this.speechStatusChanged = function (value) {
