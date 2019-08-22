@@ -1,4 +1,4 @@
-var application = function () {  
+var application = function () {
     this.paused = false;
     if (robotIP != null) {
         this.robotController = new RobotController();
@@ -27,7 +27,7 @@ var application = function () {
         // Bind up arrow key press to get previous input
         else if (keycode == '38') {
             getPreviousInput();
-         }
+        }
     });
 }
 
@@ -35,10 +35,10 @@ async function submitInput() {
     const inputText = $("#inputTextArea").val();
     addToHistory(inputText);
     clearTextInput();
-    
+
     if (await this.robotController.getStatus() && !this.paused) {
-        inputManager();  
-    } 
+        inputManager();
+    }
 }
 
 async function inputManager() {
@@ -58,7 +58,7 @@ async function inputManager() {
     // Scroll until the active row is in view
     const lineNum = activeRow.find('th').text();
     const rows = document.querySelectorAll('#historyList tr');
-    const line = rows[lineNum-1];   
+    const line = rows[lineNum - 1];
     line.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest'
@@ -70,13 +70,13 @@ async function inputManager() {
 
     // Wait for robot ready
     await sleep(500); // We have to wait half a second before calling getStatus
-    
+
     let ready = await this.robotController.getStatus();
-    
-    while(!ready && this.paused) {
+
+    while (!ready && this.paused) {
         // Check every 100 milliseconds
         await sleep(100);
-        
+
         ready = await this.robotController.getStatus();
     }
 
@@ -103,7 +103,7 @@ function addToHistory(inputText) {
 
     // Scroll until the new row is in view
     const rows = document.querySelectorAll('#historyList tr');
-    const line = rows[rows.length-1];   
+    const line = rows[rows.length - 1];
     line.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest'
@@ -114,17 +114,18 @@ function clearTextInput() {
     $("#inputTextArea").val('').focus();
 }
 
- function handleInput(inputText) {
+function handleInput(inputText) {
     tokens = inputParse(inputText);
-    for (i=0;i<tokens.repitions;i++) {
+    for (i = 0; i < tokens.repitions; i++) {
         if (tokens.command != null) {
-            if (tokens.command =="pause"){
+            if (tokens.command == "pause") {
                 this.paused = true;
-            }else{
-            this.robotController.executeCommand(tokens.command);
+            }
+            else {
+                this.robotController.executeCommand(tokens.command);
+            }
         }
-        }
-        if (tokens.animation != null) {this.robotController.animate(tokens.animation);}
+        if (tokens.animation != null) { this.robotController.animate(tokens.animation); }
     }
 }
 
@@ -138,15 +139,15 @@ function inputParse(inputString) {
 
     conditionals = /(?<=\().+?(?=\))/g.exec(inputString)
     repitions = /(?<=\[).+?(?=\])/g.exec(inputString)
-    animation = inputString.replace(/\{.+\}/gi, "").replace(/ *\([^)]*\) */g,"").replace(/\[.+\]/gi,"")
-    
-    return  {"repitions":(repitions == undefined)? 1:repitions[0],"command":(command == undefined)?null:command[0].toLowerCase(),"animation":animation,"conditionals":(conditionals == undefined)?null:conditionals[0].split("|")};
+    animation = inputString.replace(/\{.+\}/gi, "").replace(/ *\([^)]*\) */g, "").replace(/\[.+\]/gi, "")
+
+    return { "repitions": (repitions == undefined) ? 1 : repitions[0], "command": (command == undefined) ? null : command[0].toLowerCase(), "animation": animation, "conditionals": (conditionals == undefined) ? null : conditionals[0].split("|") };
 
 }
 
 function getPreviousInput() {
     const rows = document.querySelectorAll('#historyList tr');
-    const lastInput = rows[rows.length-1].lastElementChild.textContent; 
+    const lastInput = rows[rows.length - 1].lastElementChild.textContent;
     $("#inputTextArea").val(lastInput);
     // To Do: Move cursor to end of line
     // To Do: Keep going up the list
