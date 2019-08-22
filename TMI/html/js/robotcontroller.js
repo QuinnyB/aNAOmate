@@ -71,7 +71,7 @@ function RobotController() {
                 ALBehaviorManager.runBehavior(candidateBehaviors[randB]);
                 console.log(candidateBehaviors[randB]);
             }
-            if (speech.length > 0){
+            if (speech.length > 0) {
                 ALTextToSpeech.say(speech);
             }
         }
