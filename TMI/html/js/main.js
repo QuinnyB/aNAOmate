@@ -1,5 +1,5 @@
 var application = function () {  
-    
+    this.paused = false;
     if (robotIP != null) {
         this.robotController = new RobotController();
     }
@@ -9,7 +9,10 @@ var application = function () {
 
     // Bind "Submit" input button callback
     $("#sendInputButton").click(() => submitInput());
-
+    $(".btn-success").click(() => {
+        this.paused = false;
+        inputManager();
+    });
     // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
     $("#inputTextArea").keypress((event) => {
         const keycode = (event.keyCode ? event.keyCode : event.which);
@@ -25,7 +28,7 @@ async function submitInput() {
     addToHistory(inputText);
     clearTextInput();
     
-    if (await this.robotController.getStatus()) {
+    if (await this.robotController.getStatus() && !this.paused) {
         inputManager();  
     } 
 }
@@ -59,11 +62,13 @@ async function inputManager() {
 
     // Wait for robot ready
     await sleep(500); // We have to wait half a second before calling getStatus
-
+    
     let ready = await this.robotController.getStatus();
-    while(!ready) {
+    
+    while(!ready && this.paused) {
         // Check every 100 milliseconds
         await sleep(100);
+        
         ready = await this.robotController.getStatus();
     }
 
@@ -104,7 +109,13 @@ function clearTextInput() {
  function handleInput(inputText) {
     tokens = inputParse(inputText);
     for (i=0;i<tokens.repitions;i++) {
-        if (tokens.command != null) {this.robotController.executeCommand(tokens.command);}
+        if (tokens.command != null) {
+            if (tokens.command =="pause"){
+                this.paused = true;
+            }else{
+            this.robotController.executeCommand(tokens.command);
+        }
+        }
         if (tokens.animation != null) {this.robotController.animate(tokens.animation);}
     }
 }
