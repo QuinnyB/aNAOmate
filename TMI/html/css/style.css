@@ -11,6 +11,14 @@ background-color: lightblue;
   margin-top: 20px;
 }
 
+#loadSaveHeader {
+  padding-bottom: 10px;
+}
+
+#choicesFooter {
+  padding-top: 10px;
+}
+
 textarea {
   resize: none !important;
 }
@@ -82,4 +90,10 @@ textarea {
 #inputTextArea, #sendInputButton {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
+}
+
+@media (min-width: 576px) {
+  .col-sm-2 {
+    max-width: 100px !important;
+  }
 }
