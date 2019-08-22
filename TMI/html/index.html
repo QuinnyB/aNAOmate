@@ -20,48 +20,57 @@
   <main>
     <div class="container">
       <form>
-        <div class="form-group">
-          
-          <!-- <div class="list-group-borderfix">
-            <ol class="list-group" id="historyList">
-              <li class="list-group-item list-group-item-light border-0 active" id="historyPlaceholder">Input History</li>
-            </ol>
-          </div> -->
+        <header id="loadSaveHeader">
+            <button type="button" class="btn btn-outline-info">Load</button>
+            <button type="button" class="btn btn-outline-info">Save</button>
+        </header>
 
-          <div class="bordered-area" id="historyBorder">
-            <table class="table table-borderless table-sm" id="historyList">
-              <tbody>
-                <tr id="historyPlaceholder">
-                  <!-- <th scope="row"></th> -->
-                  <td>Input History</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <div class="row">
+          <div class="col-sm">
+            <div class="form-group">
 
-          <div class="input-group mb-3">
-            <textarea id="inputTextArea" type="text" class="form-control" placeholder="Input"></textarea>
-            <div class="input-group-append">
-              <button id="sendInputButton" class="btn btn-outline-secondary" type="button">Submit</button>
+              <!-- History -->
+              <div class="bordered-area" id="historyBorder">
+                <table class="table table-borderless table-sm" id="historyList">
+                  <tbody>
+                    <tr id="historyPlaceholder">
+                      <!-- <th scope="row"></th> -->
+                      <td>Input History</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Text Input -->
+              <div class="input-group mb-3">
+                <textarea id="inputTextArea" type="text" class="form-control" placeholder="Input"></textarea>
+                <div class="input-group-append">
+                  <button id="sendInputButton" class="btn btn-outline-secondary" type="button">Submit</button>
+                </div>
+              </div>
+
             </div>
           </div>
+
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-block btn-outline-info">Wake</button>
+            <button type="button" class="btn btn-block btn-outline-info">Sleep</button>
+            <button type="button" class="btn btn-block btn-danger">STOP</button>
+            <button type="button" class="btn btn-block btn-success">Next</button>
+          </div>
         </div>
+
+        <footer id="choicesFooter">
+          <button type="button" class="btn btn-outline-info">Option 1</button>
+          <button type="button" class="btn btn-outline-info">Option 2</button>
+          <button type="button" class="btn btn-outline-info">Option 3</button>
+          <button type="button" class="btn btn-outline-info">Option 4</button>
+        </footer>
       </form>
     </div>
   </main>
 
-  <footer>
-    <div class="container">
-      <div class="float-left">
-        <button type="button" class="btn btn-outline-info">Wake</button>
-        <button type="button" class="btn btn-outline-info">Sleep</button>
-        <button type="button" class="btn btn-danger">STOP</button>
-      </div>
-      <div class="float-right">
-        <button type="button" class="btn btn-success">Next</button>
-      </div>
-    </div>
-  </footer>
+  
 
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
