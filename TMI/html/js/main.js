@@ -10,13 +10,18 @@ var application = function () {
     // Bind "Submit" input button callback
     $("#sendInputButton").click(() => submitInput());
 
-    // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
-    $("#inputTextArea").keypress((event) => {
+    // When clicked in input field, bind enter and up arror key presses
+    $("#inputTextArea").keydown((event) => {
         const keycode = (event.keyCode ? event.keyCode : event.which);
+        // Bind Enter key press to same callback as Submit button, when focussed on input text field
         if (keycode == '13') {
             event.preventDefault();     // Prevent line return behaviour
             submitInput();
         }
+        // Bind up arrow key press to get previous input
+        else if (keycode == '38') {
+            getPreviousInput();
+         }
     });
 }
 
@@ -123,4 +128,12 @@ function inputParse(inputString) {
     
     return  {"repitions":(repitions == undefined)? 1:repitions[0],"command":(command == undefined)?null:command[0].toLowerCase(),"animation":animation,"conditionals":(conditionals == undefined)?null:conditionals[0].split("|")};
 
-  }
+}
+
+function getPreviousInput() {
+    const rows = document.querySelectorAll('#historyList tr');
+    const lastInput = rows[rows.length-1].lastElementChild.textContent; 
+    $("#inputTextArea").val(lastInput);
+    // To Do: Move cursor to end of line
+    // To Do: Keep going up the list
+}
