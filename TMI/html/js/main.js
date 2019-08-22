@@ -111,7 +111,6 @@ function clearTextInput() {
     for (i=0;i<tokens.repitions;i++) {
         if (tokens.command != null) {
             if (tokens.command =="pause"){
-                console.log('hol up');
                 this.paused = true;
             }else{
             this.robotController.executeCommand(tokens.command);
