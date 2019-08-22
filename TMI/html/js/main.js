@@ -63,11 +63,9 @@ async function inputManager() {
     let ready = await this.robotController.getStatus();
     while(!ready) {
         // Check every 100 milliseconds
-        console.log('busy');
         await sleep(100);
         ready = await this.robotController.getStatus();
     }
-    console.log('ready');
 
     // Check if there is a row below the current row in input history
     if (activeRow.next().length) {
@@ -104,14 +102,11 @@ function clearTextInput() {
 }
 
  function handleInput(inputText) {
-    // const inputText = $("#inputTextArea").val();
-    // console.log(inputText);
     tokens = inputParse(inputText);
-    for (i=0;i<tokens.repitions;i++){
-        this.robotController.executeCommand(tokens.command);
-        this.robotController.animate(tokens.animation);
+    for (i=0;i<tokens.repitions;i++) {
+        if (tokens.command != null) {this.robotController.executeCommand(tokens.command);}
+        if (tokens.animation != null) {this.robotController.animate(tokens.animation);}
     }
-    //  this.robotController.say(inputText);
 }
 
 async function sleep(ms) {
