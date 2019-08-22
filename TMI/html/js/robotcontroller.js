@@ -21,8 +21,6 @@ function RobotController() {
             });
     });
 
-
-
     // Execute command on robot
     this.executeCommand = function (command) {
         switch (command) {
@@ -76,17 +74,10 @@ function RobotController() {
             if (speech.length > 0){
                 ALTextToSpeech.say(speech);
             }
-        }else{
+        }
+        else {
             ALAnimatedSpeech.say(speech);
         }
-
-<<<<<<< HEAD
-        if (speech.length > 0) {
-            ALTextToSpeech.say(speech);
-        }
-=======
-
->>>>>>> a6015e75469715787620a4f956d91bf69e5034bf
     }
 
     this.speechStatusChanged = function (value) {
@@ -119,31 +110,10 @@ function RobotController() {
         return textDone && animationDone;
     }
 
+    // Send speech to robot to say
     this.say = function (utterance) {
         // ALBehaviorManager.runBehavior("Stand/Emotions/Neutral/Hello_1");
         ALTextToSpeech.say(utterance);
         console.log(utterance);
     }
-
-    // this.subscribe = async function() {
-    //     await this.sleep(2000);
-
-    //     await ALTextToSpeech.registerEvent("Status")
-    //     .then(data => {
-    //         console.log('Event: ' + data);
-    //     });
-
-    //     this.speechSubscriber.signal.connect(this.speechStatusChanged);
-    // }
-
-    // this.sleep = async function(ms) {
-    //     return new Promise(resolve => setTimeout(resolve, ms));
-    // }
-
-    // this.subscribe();
 }
-
-
-
-
-
