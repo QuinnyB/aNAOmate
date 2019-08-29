@@ -27,7 +27,7 @@ function RobotController() {
             case "wake":
                 ALMotion.wakeUp();
                 ALRobotPosture.goToPosture("Stand", 1.0);
-                ALAutonomousLife.setState("disabled");
+                // ALAutonomousLife.setState("disabled");
                 break;
             case "rest":
                 ALMotion.rest();
