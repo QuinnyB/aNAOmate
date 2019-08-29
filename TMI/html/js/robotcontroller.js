@@ -15,8 +15,9 @@ function RobotController() {
             .then(loadedBehaviors => {
                 // Need to make this better - split into stand and sit behaviors to use based on state of robot
                 // Possibly also make a second list that is all lowercase for comparison to entered text
-                // console.log(loadedBehaviors);
-                this.behaviors = loadedBehaviors.filter((bhv) => { return bhv.includes('/Stand') });
+                // console.log(loadedBehaviors); 
+                this.sitBehaviors = loadedBehaviors.filter((bhv) => { return bhv.includes('/Sit/') });
+                this.standBehaviors = loadedBehaviors.filter((bhv) => { return bhv.includes('/Stand') });
                 // console.log(this.behaviors);
             });
     });
@@ -29,6 +30,8 @@ function RobotController() {
                 ALRobotPosture.goToPosture("Stand", 1.0);
                 // ALAutonomousLife.setState("disabled");
                 break;
+            case "sit":
+                ALRobotPosture.goToPosture("Sit",1.0);
             case "rest":
                 ALMotion.rest();
                 ALAutonomousLife.setState("solitary");
@@ -53,7 +56,7 @@ function RobotController() {
     }
 
     // Split animation into behavior and/or speech, then do/say both 
-    this.animate = function (animation) {
+    this.animate = async function (animation) {
         anitoks = animation.split(';');
         if (anitoks[1] != undefined) {
             behavior = anitoks[0];
@@ -64,8 +67,17 @@ function RobotController() {
         }
 
         if (behavior.length > 0) {
-            candidateBehaviors = behaviors.filter((bhv) => { return bhv.includes(behavior[0].toUpperCase() + behavior.slice(1)) });
-            // console.log(candidateBehaviors);
+            posture = await ALRobotPosture.getPosture();
+            switch (posture) {
+                case "Sit":
+                    behaviorList = sitBehaviors;
+                    break;
+                case "Stand":
+                    behaviorList = standBehaviors;
+                    break;
+            }
+            candidateBehaviors = behaviorList.filter((bhv) => { return bhv.includes(behavior[0].toUpperCase() + behavior.slice(1)) });
+            console.log(candidateBehaviors);
             if (candidateBehaviors.length > 0) {
                 randB = Math.floor(Math.random() * candidateBehaviors.length);
                 ALBehaviorManager.runBehavior(candidateBehaviors[randB]);

@@ -1,6 +1,6 @@
 var application = function () {
     this.paused = false;
-    this.upArrowRow = null;
+    this.historyRetrieveRow = null; // Row for tracking which row in history is being retrieved when using up/down arrow
     if (robotIP != null) {
         this.robotController = new RobotController();
     }
@@ -44,6 +44,10 @@ var application = function () {
         // Bind up arrow key press to get previous input
         else if (keycode == '38') {
             getPreviousInput();
+        }
+        // Bind down arrow key press to get nex input
+        else if (keycode == '40') {
+            getNextInput();
         }
     });
 }
@@ -132,7 +136,7 @@ function addToHistory(inputText) {
     }
 
     // Update up arror row variable
-    this.upArrowRow = rows.length - 1;
+    this.historyRetrieveRow = rows.length;
 }
 
 function clearTextInput() {
@@ -170,17 +174,33 @@ function inputParse(inputString) {
 }
 
 function getPreviousInput() {
-    if (this.upArrowRow != null) {
+    if (this.historyRetrieveRow != null) {
         const rows = document.querySelectorAll('#historyList tr');
-        const lastInput = rows[this.upArrowRow].lastElementChild.textContent;
-        const inputTextArea = $("#inputTextArea");
-        inputTextArea.val(lastInput);
-        inputTextArea.focus();
-        inputTextArea[0].setSelectionRange(lastInput.length, lastInput.length);  // Move cursor to end of line
-        this.upArrowRow--;  // Keep going up the list 
-        if (this.upArrowRow < 0) {
-            this.upArrowRow = rows.length - 1;
+        this.historyRetrieveRow--
+        if (this.historyRetrieveRow < 0) {
+            // historyRetrieveRow = 0;
+            this.historyRetrieveRow = rows.length - 1; // Loop back around to bottom of list
         }
+        const previousInput = rows[this.historyRetrieveRow].lastElementChild.textContent;
+        const inputTextArea = $("#inputTextArea");
+        inputTextArea.val(previousInput);
+        inputTextArea.focus();
+        inputTextArea[0].setSelectionRange(previousInput.length, previousInput.length);  // Move cursor to end of line
+    }
+}
+
+function getNextInput() {
+    if (this.historyRetrieveRow != null) {
+        const rows = document.querySelectorAll('#historyList tr');
+        this.historyRetrieveRow++
+        if (this.historyRetrieveRow > rows.length - 1) {
+            this.historyRetrieveRow = rows.length - 1;
+        }
+        const nextInput = rows[this.historyRetrieveRow].lastElementChild.textContent;
+        const inputTextArea = $("#inputTextArea");
+        inputTextArea.val(nextInput);
+        inputTextArea.focus();
+        inputTextArea[0].setSelectionRange(nextInput.length, nextInput.length);  // Move cursor to end of line
     }
 }
 
