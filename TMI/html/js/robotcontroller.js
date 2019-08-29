@@ -29,6 +29,8 @@ function RobotController() {
                 ALRobotPosture.goToPosture("Stand", 1.0);
                 // ALAutonomousLife.setState("disabled");
                 break;
+            case "sit":
+                ALRobotPosture.goToPosture("Sit",1.0);
             case "rest":
                 ALMotion.rest();
                 ALAutonomousLife.setState("solitary");
