@@ -11,10 +11,26 @@ var application = function () {
     // Bind "Submit" input button callback
     $("#sendInputButton").click(() => submitInput());
 
-    // Bind Next button TO DO: Fix this
-    $(".btn-success").click(() => {
+    // Bind Next button
+    $("#nextBtn").click(() => {
         this.paused = false;
         inputManager();
+    });
+
+    // Bind Save button
+    var textFile = null;
+    $("#modalSave").click(() => {
+        // Save all entered commands to a file
+        textArray = [];
+        $("#historyList tbody tr td").each(function () {
+            textArray.push($(this).text());
+        });
+
+        const filename = $('#filename').val();
+        let link = document.getElementById('downloadLink');
+        link.setAttribute('download', filename);
+        link.href = makeTextFile(textArray.join('\n'));
+        link.click();
     });
 
     // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
@@ -167,3 +183,17 @@ function getPreviousInput() {
         }
     }
 }
+
+function makeTextFile(text) {
+    var data = new Blob([text], { type: 'text/plain' });
+
+    // If we are replacing a previously generated file we need to
+    // manually revoke the object URL to avoid memory leaks.
+    if (this.textFile !== null && this.textFile !== undefined) {
+        window.URL.revokeObjectURL(textFile);
+    }
+
+    textFile = window.URL.createObjectURL(data);
+
+    return textFile;
+};
