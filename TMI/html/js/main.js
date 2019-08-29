@@ -1,5 +1,6 @@
 var application = function () {
     this.paused = false;
+    this.upArrowRow = null;
     if (robotIP != null) {
         this.robotController = new RobotController();
     }
@@ -90,6 +91,7 @@ async function inputManager() {
     }
 }
 
+// Add input to input history table 
 function addToHistory(inputText) {
     // Add input text to history and go to next line
     $("#historyPlaceholder").remove();
@@ -108,6 +110,9 @@ function addToHistory(inputText) {
         behavior: 'smooth',
         block: 'nearest'
     });
+
+    // Update up arror row variable
+    this.upArrowRow = rows.length - 1;
 }
 
 function clearTextInput() {
@@ -142,13 +147,19 @@ function inputParse(inputString) {
     animation = inputString.replace(/\{.+\}/gi, "").replace(/ *\([^)]*\) */g, "").replace(/\[.+\]/gi, "")
 
     return { "repitions": (repitions == undefined) ? 1 : repitions[0], "command": (command == undefined) ? null : command[0].toLowerCase(), "animation": animation, "conditionals": (conditionals == undefined) ? null : conditionals[0].split("|") };
-
 }
 
 function getPreviousInput() {
-    const rows = document.querySelectorAll('#historyList tr');
-    const lastInput = rows[rows.length - 1].lastElementChild.textContent;
-    $("#inputTextArea").val(lastInput);
-    // To Do: Move cursor to end of line
-    // To Do: Keep going up the list
+    if (this.upArrowRow != null) {
+        const rows = document.querySelectorAll('#historyList tr');
+        const lastInput = rows[this.upArrowRow].lastElementChild.textContent;
+        const inputTextArea = $("#inputTextArea");
+        inputTextArea.val(lastInput);
+        inputTextArea.focus();
+        inputTextArea[0].setSelectionRange(lastInput.length, lastInput.length);  // Move cursor to end of line
+        this.upArrowRow--;  // Keep going up the list 
+        if (this.upArrowRow < 0) {
+            this.upArrowRow = rows.length - 1;
+        }
+    }
 }
