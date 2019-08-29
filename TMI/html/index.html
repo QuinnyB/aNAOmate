@@ -82,16 +82,19 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="myModalForm">
               <div class="form-group">
                 <label for="filename" class="col-form-label">File name: </label>
-                <input type="text" class="form-control" id="filename">
+                <input type="text" class="form-control" id="filename" required>
+                <div id="invalidFilename" class="invalid-feedback">
+                  Please provide a file name.
+                </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="modalSave">Save</button>
+            <button type="submit" class="btn btn-primary" id="modalSave">Save</button>
           </div>
         </div>
       </div>

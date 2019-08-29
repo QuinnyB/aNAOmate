@@ -17,20 +17,33 @@ var application = function () {
         inputManager();
     });
 
+    $('#filename').on("change paste keyup", function () {
+        const filename = $.trim($('#filename').val());
+        if (filename == '') {
+            $('#invalidFilename').show();
+        }
+        else {
+            $('#invalidFilename').hide();
+        }
+    });
+
     // Bind Save button
     var textFile = null;
     $("#modalSave").click(() => {
-        // Save all entered commands to a file
-        textArray = [];
-        $("#historyList tbody tr td").each(function () {
-            textArray.push($(this).text());
-        });
+        const filename = $.trim($('#filename').val());
+        if (filename != '') {
+            // Save all entered commands to a file
+            textArray = [];
+            $("#historyList tbody tr td").each(function () {
+                textArray.push($(this).text());
+            });
 
-        const filename = $('#filename').val();
-        let link = document.getElementById('downloadLink');
-        link.setAttribute('download', filename);
-        link.href = makeTextFile(textArray.join('\n'));
-        link.click();
+
+            let link = document.getElementById('downloadLink');
+            link.setAttribute('download', filename);
+            link.href = makeTextFile(textArray.join('\n'));
+            link.click();
+        }
     });
 
     // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
