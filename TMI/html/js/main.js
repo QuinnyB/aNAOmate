@@ -60,10 +60,12 @@ async function inputManager() {
     const lineNum = activeRow.find('th').text();
     const rows = document.querySelectorAll('#historyList tr');
     const line = rows[lineNum - 1];
-    line.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest'
-    });
+    if (line) {
+        line.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest'
+        });
+    }
 
     activeRow.addClass('table-info');
 
@@ -106,10 +108,12 @@ function addToHistory(inputText) {
     // Scroll until the new row is in view
     const rows = document.querySelectorAll('#historyList tr');
     const line = rows[rows.length - 1];
-    line.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest'
-    });
+    if (line) {
+        line.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest'
+        });
+    }
 
     // Update up arror row variable
     this.upArrowRow = rows.length - 1;
