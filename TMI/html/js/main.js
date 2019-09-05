@@ -46,6 +46,32 @@ var application = function () {
         }
     });
 
+    // Bind Load button
+    $('#loadBtn').on('click', function(){
+        $('#loadFile').trigger('click');
+    })
+
+    // Set up listener for state change in load file
+    $('#loadFile').change(function(){
+        var $input = $(this);
+        var inputFiles = this.files;
+        if(inputFiles == undefined || inputFiles.lengh == 0 ) return;
+        var inputFile = inputFiles[0];
+
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            inputLines = event.target.result.split("\n");
+            inputLines.forEach(function(element) {
+                addToHistory(element);
+            }, this);
+        };
+        reader.onerror = function(event) {
+            alert("I AM ERROR: " + event.target.code);
+        };
+        reader.readAsText(inputFile);
+    })
+
+
     // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
     $("#inputTextArea").keydown((event) => {
         const keycode = (event.keyCode ? event.keyCode : event.which);
@@ -105,15 +131,17 @@ async function inputManager() {
     handleInput($("#historyList tbody .table-info td").text());
 
     // Wait for robot ready
-    await sleep(500); // We have to wait half a second before calling getStatus
+    await sleep(1000); // We have to wait half a second before calling getStatus
 
     let ready = await this.robotController.getStatus();
+    // console.log("before loop " + ready)
 
-    while (!ready && this.paused) {
+    while (!ready || this.paused) {
         // Check every 100 milliseconds
         await sleep(100);
 
         ready = await this.robotController.getStatus();
+        // console.log("in loop " + ready)
     }
 
     // Check if there is a row below the current row in input history

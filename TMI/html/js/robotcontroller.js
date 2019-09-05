@@ -73,6 +73,7 @@ function RobotController() {
                     behaviorList = sitBehaviors;
                     break;
                 case "Stand":
+                case "StandInit":
                     behaviorList = standBehaviors;
                     break;
             }
