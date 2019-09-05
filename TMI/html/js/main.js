@@ -8,11 +8,16 @@ var application = function () {
         this.robotController = new FauxbotController();
     }
 
+    // Bind Sidebar collapse button
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('collapsed');
+    });
+
     // Bind "Submit" input button callback
     $("#sendInputButton").click(() => submitInput());
 
     // Bind Next button
-    $("#nextBtn").click(() => {
+    $("#playBtn").click(() => {
         this.paused = false;
         inputManager();
     });

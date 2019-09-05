@@ -14,6 +14,9 @@
   <header>
     <nav class="navbar navbar-light bg-light">
       <span class="navbar-brand mb-0 h1">NAO</span>
+      <button type="button" id="sidebarCollapse" class="btn btn-info">
+        <span>Behaviors</span>
+      </button>
     </nav>
   </header>
 
@@ -21,17 +24,12 @@
 
     <div class="wrapper">
 
-      <!-- Sidebar -->
-      <!-- <div id="sidebar">
-        ...
-      </div> -->
-
       <!-- Page Content -->
       <div class="container">
         <form>
           <header id="loadSaveHeader">
             <button id="loadBtn" type="button" class="btn btn-outline-info">Load</button>
-            <input id="loadFile" type="file" name="loadFile" style="display: none;"/>
+            <input id="loadFile" type="file" name="loadFile" style="display: none;" />
             <button id="saveBtn" type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Save</button>
             <a id="downloadLink" download="Script" href="#">Download File</a>
           </header>
@@ -67,11 +65,11 @@
               <button id="wakeBtn" type="button" class="btn btn-block btn-outline-info">Wake</button>
               <button id="sleepBtn" type="button" class="btn btn-block btn-outline-info">Sleep</button>
               <button id="stopBtn" type="button" class="btn btn-block btn-danger">STOP</button>
-              <button id="nextBtn" type="button" class="btn btn-block btn-success">Next</button>
+              <button id="playBtn" type="button" class="btn btn-block btn-success">Play</button>
             </div>
           </div>
 
-          <footer id="choicesFooter">
+          <footer id="choicesFooter" hidden>
             <button type="button" class="btn btn-outline-info">Option 1</button>
             <button type="button" class="btn btn-outline-info">Option 2</button>
             <button type="button" class="btn btn-outline-info">Option 3</button>
@@ -79,6 +77,53 @@
           </footer>
         </form>
       </div>
+
+      <!-- Sidebar -->
+      <nav id="sidebar" class="collapsed">
+        <div class="sidebar-header">
+          <h3>Loaded Behaviors</h3>
+        </div>
+        <ul class="list-unstyled components">
+          <p>Dummy Heading</p>
+          <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Sit</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+              <li>
+                <a href="#">Happy</a>
+              </li>
+              <li>
+                <a href="#">Hello</a>
+              </li>
+              <li>
+                <a href="#">Sad</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Stand</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
+                <a href="#">Guitar</a>
+              </li>
+              <li>
+                <a href="#">Hello</a>
+              </li>
+              <li>
+                <a href="#">Dance</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Portfolio</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+      </nav>
 
       <!-- Modal Window -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
