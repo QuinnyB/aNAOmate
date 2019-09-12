@@ -1,48 +1,60 @@
-var application = function () {
+var application = async function() {
     this.paused = false;
     this.historyRetrieveRow = null; // Row for tracking which row in history is being retrieved when using up/down arrow
     if (robotIP != null) {
         this.robotController = new RobotController();
-    }
-    else {
+        this.robotController.init(populateSidebar);
+    } else {
         this.robotController = new FauxbotController();
     }
 
     // Bind Sidebar collapse button
-    $('#sidebarCollapse').on('click', function () {
+    $('#sidebarCollapse').on('click', function() {
+        // open or close navbar
         $('#sidebar').toggleClass('collapsed');
+        // close dropdowns
+        $('.collapse.in').toggleClass('in');
+        // and also adjust aria-expanded attributes we use for the open/closed arrows
+        // in our CSS
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+
+    // $('#sidebarCollapse').on('click', function() {
+    //     $('#sidebar').toggleClass('collapsed');
+    // });
+
+    $('#sidebar').mCustomScrollbar({
+        theme: 'minimal',
     });
 
     // Bind "Submit" input button callback
-    $("#sendInputButton").click(() => submitInput());
+    $('#sendInputButton').click(() => submitInput());
 
     // Bind Next button
-    $("#playBtn").click(() => {
+    $('#playBtn').click(() => {
         this.paused = false;
         inputManager();
     });
 
-    $('#filename').on("change paste keyup", function () {
+    $('#filename').on('change paste keyup', function() {
         const filename = $.trim($('#filename').val());
         if (filename == '') {
             $('#invalidFilename').show();
-        }
-        else {
+        } else {
             $('#invalidFilename').hide();
         }
     });
 
     // Bind Save button
     var textFile = null;
-    $("#modalSave").click(() => {
+    $('#modalSave').click(() => {
         const filename = $.trim($('#filename').val());
         if (filename != '') {
             // Save all entered commands to a file
             textArray = [];
-            $("#historyList tbody tr td").each(function () {
+            $('#historyList tbody tr td').each(function() {
                 textArray.push($(this).text());
             });
-
 
             let link = document.getElementById('downloadLink');
             link.setAttribute('download', filename);
@@ -52,37 +64,36 @@ var application = function () {
     });
 
     // Bind Load button
-    $('#loadBtn').on('click', function(){
+    $('#loadBtn').on('click', function() {
         $('#loadFile').trigger('click');
-    })
+    });
 
     // Set up listener for state change in load file
-    $('#loadFile').change(function(){
+    $('#loadFile').change(function() {
         var $input = $(this);
         var inputFiles = this.files;
-        if(inputFiles == undefined || inputFiles.lengh == 0 ) return;
+        if (inputFiles == undefined || inputFiles.lengh == 0) return;
         var inputFile = inputFiles[0];
 
         var reader = new FileReader();
         reader.onload = function(event) {
-            inputLines = event.target.result.split("\n");
+            inputLines = event.target.result.split('\n');
             inputLines.forEach(function(element) {
                 addToHistory(element);
             }, this);
         };
         reader.onerror = function(event) {
-            alert("I AM ERROR: " + event.target.code);
+            alert('I AM ERROR: ' + event.target.code);
         };
         reader.readAsText(inputFile);
-    })
+    });
 
-
-    // Bind Enter key press to same callback as Submit button, when focussed on input text field, 
-    $("#inputTextArea").keydown((event) => {
-        const keycode = (event.keyCode ? event.keyCode : event.which);
+    // Bind Enter key press to same callback as Submit button, when focussed on input text field,
+    $('#inputTextArea').keydown((event) => {
+        const keycode = event.keyCode ? event.keyCode : event.which;
         // Bind Enter key press to same callback as Submit button, when focussed on input text field
         if (keycode == '13') {
-            event.preventDefault();     // Prevent line return behaviour
+            event.preventDefault(); // Prevent line return behaviour
             submitInput();
         }
         // Bind up arrow key press to get previous input
@@ -94,14 +105,35 @@ var application = function () {
             getNextInput();
         }
     });
+};
+
+async function populateSidebar(behaviors) {
+    const { sitBehaviors, standBehaviors } = behaviors;
+    console.log(standBehaviors);
+
+    standBehaviors.forEach((bhv) => {
+        $('#standSubmenu').append(`
+            <li>
+            <a href="#">${bhv.split('/').pop()}</a>
+            </li>
+        `);
+    });
+
+    sitBehaviors.forEach((bhv) => {
+        $('#sitSubmenu').append(`
+            <li>
+            <a href="#">${bhv.split('/').pop()}</a>
+            </li>
+        `);
+    });
 }
 
 async function submitInput() {
-    const inputText = $("#inputTextArea").val();
+    const inputText = $('#inputTextArea').val();
     addToHistory(inputText);
     clearTextInput();
 
-    if (await this.robotController.getStatus() && !this.paused) {
+    if ((await this.robotController.getStatus()) && !this.paused) {
         inputManager();
     }
 }
@@ -111,13 +143,12 @@ async function inputManager() {
     const lastActiveRow = $('.table-info');
     let activeRow;
     if (lastActiveRow.length) {
-        // Yes: Remove from current row and add to next row and get input text from that row 
+        // Yes: Remove from current row and add to next row and get input text from that row
         lastActiveRow.removeClass('table-info');
         activeRow = lastActiveRow.next();
-    }
-    else {
+    } else {
         // No: Add it to first row and get inputText from first row
-        activeRow = $("#historyList tbody tr").first()
+        activeRow = $('#historyList tbody tr').first();
     }
 
     // Scroll until the active row is in view
@@ -127,13 +158,13 @@ async function inputManager() {
     if (line) {
         line.scrollIntoView({
             behavior: 'smooth',
-            block: 'nearest'
+            block: 'nearest',
         });
     }
 
     activeRow.addClass('table-info');
 
-    handleInput($("#historyList tbody .table-info td").text());
+    handleInput($('#historyList tbody .table-info td').text());
 
     // Wait for robot ready
     await sleep(1000); // We have to wait half a second before calling getStatus
@@ -153,21 +184,24 @@ async function inputManager() {
     if (activeRow.next().length) {
         // Yes: call self
         inputManager();
-    }
-    else {
+    } else {
         //console.log("Reached End");
     }
 }
 
-// Add input to input history table 
+// Add input to input history table
 function addToHistory(inputText) {
     // Add input text to history and go to next line
-    $("#historyPlaceholder").remove();
-    var count = $("#historyList tbody").children().length;
-    $("#historyList tbody").append(
+    $('#historyPlaceholder').remove();
+    var count = $('#historyList tbody').children().length;
+    $('#historyList tbody').append(
         `<tr>
-            <th scope="row">` + (count + 1) + `</th>
-            <td>` + inputText + `</td>
+            <th scope="row">` +
+            (count + 1) +
+            `</th>
+            <td>` +
+            inputText +
+            `</td>
         </tr>`
     );
 
@@ -177,7 +211,7 @@ function addToHistory(inputText) {
     if (line) {
         line.scrollIntoView({
             behavior: 'smooth',
-            block: 'nearest'
+            block: 'nearest',
         });
     }
 
@@ -186,67 +220,77 @@ function addToHistory(inputText) {
 }
 
 function clearTextInput() {
-    $("#inputTextArea").val('').focus();
+    $('#inputTextArea')
+        .val('')
+        .focus();
 }
 
 function handleInput(inputText) {
     tokens = inputParse(inputText);
     for (i = 0; i < tokens.repitions; i++) {
         if (tokens.command != null) {
-            if (tokens.command == "pause") {
+            if (tokens.command == 'pause') {
                 this.paused = true;
-            }
-            else {
+            } else {
                 this.robotController.executeCommand(tokens.command);
             }
         }
-        if (tokens.animation != null) { this.robotController.animate(tokens.animation); }
+        if (tokens.animation != null) {
+            this.robotController.animate(tokens.animation);
+        }
     }
 }
 
 async function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function inputParse(inputString) {
+    command = /(?<=\{).+?(?=\})/g.exec(inputString);
 
-    command = /(?<=\{).+?(?=\})/g.exec(inputString)
+    conditionals = /(?<=\().+?(?=\))/g.exec(inputString);
+    repitions = /(?<=\[).+?(?=\])/g.exec(inputString);
+    animation = inputString
+        .replace(/\{.+\}/gi, '')
+        .replace(/ *\([^)]*\) */g, '')
+        .replace(/\[.+\]/gi, '');
 
-    conditionals = /(?<=\().+?(?=\))/g.exec(inputString)
-    repitions = /(?<=\[).+?(?=\])/g.exec(inputString)
-    animation = inputString.replace(/\{.+\}/gi, "").replace(/ *\([^)]*\) */g, "").replace(/\[.+\]/gi, "")
-
-    return { "repitions": (repitions == undefined) ? 1 : repitions[0], "command": (command == undefined) ? null : command[0].toLowerCase(), "animation": animation, "conditionals": (conditionals == undefined) ? null : conditionals[0].split("|") };
+    return {
+        repitions: repitions == undefined ? 1 : repitions[0],
+        command: command == undefined ? null : command[0].toLowerCase(),
+        animation: animation,
+        conditionals: conditionals == undefined ? null : conditionals[0].split('|'),
+    };
 }
 
 function getPreviousInput() {
     if (this.historyRetrieveRow != null) {
         const rows = document.querySelectorAll('#historyList tr');
-        this.historyRetrieveRow--
+        this.historyRetrieveRow--;
         if (this.historyRetrieveRow < 0) {
             // historyRetrieveRow = 0;
             this.historyRetrieveRow = rows.length - 1; // Loop back around to bottom of list
         }
         const previousInput = rows[this.historyRetrieveRow].lastElementChild.textContent;
-        const inputTextArea = $("#inputTextArea");
+        const inputTextArea = $('#inputTextArea');
         inputTextArea.val(previousInput);
         inputTextArea.focus();
-        inputTextArea[0].setSelectionRange(previousInput.length, previousInput.length);  // Move cursor to end of line
+        inputTextArea[0].setSelectionRange(previousInput.length, previousInput.length); // Move cursor to end of line
     }
 }
 
 function getNextInput() {
     if (this.historyRetrieveRow != null) {
         const rows = document.querySelectorAll('#historyList tr');
-        this.historyRetrieveRow++
+        this.historyRetrieveRow++;
         if (this.historyRetrieveRow > rows.length - 1) {
             this.historyRetrieveRow = rows.length - 1;
         }
         const nextInput = rows[this.historyRetrieveRow].lastElementChild.textContent;
-        const inputTextArea = $("#inputTextArea");
+        const inputTextArea = $('#inputTextArea');
         inputTextArea.val(nextInput);
         inputTextArea.focus();
-        inputTextArea[0].setSelectionRange(nextInput.length, nextInput.length);  // Move cursor to end of line
+        inputTextArea[0].setSelectionRange(nextInput.length, nextInput.length); // Move cursor to end of line
     }
 }
 
@@ -262,4 +306,4 @@ function makeTextFile(text) {
     textFile = window.URL.createObjectURL(data);
 
     return textFile;
-};
+}
