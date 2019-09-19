@@ -52,6 +52,14 @@ var application = async function () {
         this.robotController.executeCommand("stop");
     });
 
+    $('#wakeBtn').click(() => {
+        this.robotController.executeCommand("wake");
+    });
+
+    $('#sleepBtn').click(() => {
+        this.robotController.executeCommand("rest");
+    });
+
     $('sidebarItem').click((event) => {
         console.log(event.target);
     });

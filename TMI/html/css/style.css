@@ -65,10 +65,14 @@ textarea {
 .bordered-area {
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
+    flex-grow: 10 !important;
+}
+
+.input-group.mb-3 {
+    flex-grow: 1;
 }
 
 #historyBorder {
-    height: 300px;
     border-bottom-right-radius: 0rem;
     border-bottom-left-radius: 0rem;
     border-bottom: none;
