@@ -33,13 +33,11 @@ var application = async function() {
 
     // Bind Next button
     $('#playBtn').click(() => {
-        if (this.paused){
+        if (this.paused) {
             this.paused = false;
-        }else{
-            if(this.inputManagerRunning){
-
-            
-            inputManager();
+        } else {
+            if (this.inputManagerRunning) {
+                inputManager();
             }
         }
     });
@@ -117,7 +115,6 @@ var application = async function() {
 
 async function populateSidebar(behaviors) {
     const { sitBehaviors, standBehaviors } = behaviors;
-    console.log(standBehaviors);
 
     standBehaviors.forEach((bhv) => {
         $('#standSubmenu').append(`
@@ -197,7 +194,6 @@ async function inputManager() {
         //console.log("Reached End");
         this.inputManagerRunning = false;
     }
-
 }
 
 // Add input to input history table
