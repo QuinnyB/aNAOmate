@@ -1,116 +1,32 @@
 * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
 body {
+    background: #fafafa;
     margin: 0px;
-    background-color: lightblue;
 }
 
 .wrapper {
     display: flex;
     width: 100%;
-    /* align-items: stretch; */
     overflow: hidden;
-}
-
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    height: 100vh;
-    background: #7386d5;
-    color: #fff;
-    transition: all 0.3s;
-}
-
-#sidebar.collapsed {
-    margin-right: -250px;
-}
-
-a[data-toggle='collapse'] {
-    position: relative;
-}
-
-.dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-}
-
-@media (max-width: 768px) {
-    #sidebar {
-        margin-right: -250px;
-    }
-    #sidebar.collapsed {
-        margin-right: 0;
-    }
-}
-
-body {
-    background: #fafafa;
-}
-
-p {
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
-}
-
-a,
-a:hover,
-a:focus {
-    color: inherit !important;
-    text-decoration: none !important;
-    transition: all 0.3s !important;
-}
-
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: #6d7fcc;
-}
-
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-}
-
-#sidebar ul p {
-    color: #fff;
-    padding: 10px;
-}
-
-#sidebar ul li a {
-    padding: 10px;
-    /* font-size: 1.1em; */
-    display: block;
-}
-#sidebar ul li a:hover {
-    color: #7386d5 !important;
-    background: #fff !important;
-}
-
-#sidebar ul li.active > a,
-a[aria-expanded='true'] {
-    color: #fff;
-    background: #6d7fcc;
-}
-ul ul a {
-    /* font-size: 0.9em !important; */
-    padding-left: 30px !important;
-    background: #6d7fcc;
 }
 
 #content {
     width: 100vw;
+    display: flex;
+    flex-direction: column;
 }
 
+/* CONTAINER */
 .container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     margin-top: 20px;
 }
 
+/* LOAD/SAVE HEADER */
 #loadSaveHeader {
     padding-bottom: 10px;
 }
@@ -118,9 +34,19 @@ ul ul a {
 #downloadLink {
     display: none;
 }
+/* END LOAD/SAVE HEADER */
 
-#choicesFooter {
-    padding-top: 10px;
+/* INPUT AREA */
+.row {
+    flex-grow: 1;
+}
+
+.row .col-sm,
+.row .col-sm .form-group,
+.row .col-sm .form-group .bordered-area {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 textarea {
@@ -181,9 +107,109 @@ textarea {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
+/* END INPUT AREA */
+
+
+/* FOOTER */
+#choicesFooter {
+    padding-top: 10px;
+}
+/* END FOOTER */
+
+
 
 @media (min-width: 576px) {
     .col-sm-2 {
         max-width: 100px !important;
     }
 }
+/* END CONTAINER */
+
+/* SIDEBAR */
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    height: 100vh;
+    background: #7386d5;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.collapsed {
+    margin-right: -250px;
+}
+
+a[data-toggle='collapse'] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-right: -250px;
+    }
+    #sidebar.collapsed {
+        margin-right: 0;
+    }
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    /* font-size: 1.1em; */
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #7386d5 !important;
+    background: #fff !important;
+}
+
+#sidebar ul li.active > a,
+a[aria-expanded='true'] {
+    color: #fff;
+    background: #6d7fcc;
+}
+ul ul a {
+    /* font-size: 0.9em !important; */
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit !important;
+    text-decoration: none !important;
+    transition: all 0.3s !important;
+}
+/* END SIDEBAR */
+
+p {
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+
