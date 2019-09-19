@@ -1,5 +1,6 @@
 var application = async function() {
     this.paused = false;
+    this.inputManagerRunning = false;
     this.historyRetrieveRow = null; // Row for tracking which row in history is being retrieved when using up/down arrow
     if (robotIP != null) {
         this.robotController = new RobotController();
@@ -32,8 +33,15 @@ var application = async function() {
 
     // Bind Next button
     $('#playBtn').click(() => {
-        this.paused = false;
-        inputManager();
+        if (this.paused){
+            this.paused = false;
+        }else{
+            if(this.inputManagerRunning){
+
+            
+            inputManager();
+            }
+        }
     });
 
     $('#filename').on('change paste keyup', function() {
@@ -133,13 +141,14 @@ async function submitInput() {
     addToHistory(inputText);
     clearTextInput();
 
-    if ((await this.robotController.getStatus()) && !this.paused) {
+    if ((await this.robotController.getStatus()) && !this.paused && !inputManagerRunning) {
         inputManager();
     }
 }
 
 async function inputManager() {
     // Check if there is an active row in history table
+    this.inputManagerRunning = true;
     const lastActiveRow = $('.table-info');
     let activeRow;
     if (lastActiveRow.length) {
@@ -186,7 +195,9 @@ async function inputManager() {
         inputManager();
     } else {
         //console.log("Reached End");
+        this.inputManagerRunning = false;
     }
+
 }
 
 // Add input to input history table
