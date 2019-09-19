@@ -59,6 +59,7 @@ function RobotController() {
                 break;
             case 'stop':
                 ALBehaviorManager.stopAllBehaviors();
+                ALTextToSpeech.stopAll();
                 break;
             case '':
                 break;

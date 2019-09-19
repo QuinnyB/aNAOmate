@@ -43,7 +43,7 @@ var application = async function () {
     });
 
     $('#stopBtn').click(() => {
-        this.robotController.executeCommand("kill");
+        this.robotController.executeCommand("stop");
     });
 
     $('sidebarItem').click((event) => {
