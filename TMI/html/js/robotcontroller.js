@@ -40,13 +40,14 @@ function RobotController() {
             case 'wake':
                 ALMotion.wakeUp();
                 ALRobotPosture.goToPosture('Stand', 1.0);
-                // ALAutonomousLife.setState("disabled");
+                ALAutonomousLife.setState("solitary");
                 break;
             case 'sit':
                 ALRobotPosture.goToPosture('Sit', 1.0);
+                break;
             case 'rest':
                 ALMotion.rest();
-                ALAutonomousLife.setState('solitary');
+                ALAutonomousLife.setState('disabled');
                 break;
             case 'shout':
                 ALAudioDevice.setOutputVolume(100);
@@ -59,6 +60,7 @@ function RobotController() {
                 break;
             case 'stop':
                 ALBehaviorManager.stopAllBehaviors();
+                ALTextToSpeech.stopAll();
                 break;
             case '':
                 break;
