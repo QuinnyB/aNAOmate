@@ -55,7 +55,23 @@ var application = async function() {
     $('sidebarItem').click((event) => {
         console.log(event.target);
     });
+    $('#myModalForm').on('submit', function(event) {
+        event.preventDefault();
+        const filename = $.trim($('#filename').val());
+        if (filename != '') {
+            // Save all entered commands to a file
+            textArray = [];
+            $('#historyList tbody tr td').each(function() {
+                textArray.push($(this).text());
+            });
 
+            let link = document.getElementById('downloadLink');
+            link.setAttribute('download', filename);
+            link.href = makeTextFile(textArray.join('\n'));
+            link.click();
+        }
+        $('#myModal').modal('hide');
+    });
     $('#filename').on('change paste keyup', function() {
         const filename = $.trim($('#filename').val());
         if (filename == '') {
