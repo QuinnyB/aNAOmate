@@ -36,7 +36,7 @@ var application = async function () {
         if (this.paused) {
             this.paused = false;
         } else {
-            if (this.inputManagerRunning) {
+            if (!this.inputManagerRunning) {
                 inputManager();
             }
         }
