@@ -22,11 +22,12 @@ function RobotController() {
             this.ALMotion = ALMotion;
             this.ALAudioDevice = ALAudioDevice;
 
-            const loadedBehaviors = await ALBehaviorManager.getLoadedBehaviors();
-            this.sitBehaviors = loadedBehaviors.filter((bhv) => {
+            const installedBehaviors = await ALBehaviorManager.getInstalledBehaviors();
+
+            this.sitBehaviors = installedBehaviors.filter((bhv) => {
                 return bhv.includes('/Sit/');
             });
-            this.standBehaviors = loadedBehaviors.filter((bhv) => {
+            this.standBehaviors = installedBehaviors.filter((bhv) => {
                 return bhv.includes('/Stand');
             });
 
