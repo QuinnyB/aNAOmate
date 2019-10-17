@@ -20,10 +20,6 @@ var application = async function () {
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
 
-    // $('#sidebarCollapse').on('click', function() {
-    //     $('#sidebar').toggleClass('collapsed');
-    // });
-
     $(document).on('click', '.sidebarItem', function (event) {
         const inputTextArea = $('#inputTextArea');
         inputTextArea.val(event.target.innerText + ';');
@@ -167,20 +163,30 @@ var application = async function () {
 };
 
 async function populateSidebar(behaviors) {
-    const { sitBehaviors, standBehaviors } = behaviors;
+    let { sitBehaviors, standBehaviors } = behaviors;
+
+    standBehaviors = standBehaviors.map((bhv) => {
+        return bhv.split('/').pop();
+    });
+    standBehaviors.sort();
 
     standBehaviors.forEach((bhv) => {
         $('#standSubmenu').append(`
             <li class="sidebarItem">
-            <a>${bhv.split('/').pop()}</a>
+            <a>${bhv}</a>
             </li>
         `);
     });
 
+    sitBehaviors = sitBehaviors.map((bhv) => {
+        return bhv.split('/').pop();
+    });
+    sitBehaviors.sort();
+
     sitBehaviors.forEach((bhv) => {
         $('#sitSubmenu').append(`
             <li>
-            <a href="#">${bhv.split('/').pop()}</a>
+            <a href="#">${bhv}</a>
             </li>
         `);
     });
