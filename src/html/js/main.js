@@ -4,12 +4,6 @@ var application = async function() {
     this.historyRetrieveRow = null; // Row for tracking which row in history is being retrieved when using up/down arrow
     this.robotController = new RobotController();
     this.robotController.init(populateSidebar);
-    // if (robotIP != null) {
-    //     this.robotController = new RobotController();
-    //     this.robotController.init(populateSidebar);
-    // } else {
-    //     this.robotController = new FauxbotController();
-    // }
 
     // Bind Sidebar collapse button
     $('#sidebarCollapse').on('click', function() {
