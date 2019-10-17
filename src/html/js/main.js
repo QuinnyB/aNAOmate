@@ -1,16 +1,18 @@
-var application = async function () {
+var application = async function() {
     this.paused = false;
     this.inputManagerRunning = false;
     this.historyRetrieveRow = null; // Row for tracking which row in history is being retrieved when using up/down arrow
-    if (robotIP != null) {
-        this.robotController = new RobotController();
-        this.robotController.init(populateSidebar);
-    } else {
-        this.robotController = new FauxbotController();
-    }
+    this.robotController = new RobotController();
+    this.robotController.init(populateSidebar);
+    // if (robotIP != null) {
+    //     this.robotController = new RobotController();
+    //     this.robotController.init(populateSidebar);
+    // } else {
+    //     this.robotController = new FauxbotController();
+    // }
 
     // Bind Sidebar collapse button
-    $('#sidebarCollapse').on('click', function () {
+    $('#sidebarCollapse').on('click', function() {
         // open or close navbar
         $('#sidebar').toggleClass('collapsed');
         // close dropdowns
@@ -20,7 +22,7 @@ var application = async function () {
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
 
-    $(document).on('click', '.sidebarItem', function (event) {
+    $(document).on('click', '.sidebarItem', function(event) {
         const inputTextArea = $('#inputTextArea');
         inputTextArea.val(event.target.innerText + ';');
         inputTextArea.focus();
@@ -45,27 +47,27 @@ var application = async function () {
     });
 
     $('#stopBtn').click(() => {
-        this.robotController.executeCommand("stop");
+        this.robotController.executeCommand('stop');
     });
 
     $('#wakeBtn').click(() => {
-        this.robotController.executeCommand("wake");
+        this.robotController.executeCommand('wake');
     });
 
     $('#sleepBtn').click(() => {
-        this.robotController.executeCommand("rest");
+        this.robotController.executeCommand('rest');
     });
 
     $('sidebarItem').click((event) => {
         console.log(event.target);
     });
-    $('#myModalForm').on('submit', function (event) {
+    $('#myModalForm').on('submit', function(event) {
         event.preventDefault();
         const filename = $.trim($('#filename').val());
         if (filename != '') {
             // Save all entered commands to a file
             textArray = [];
-            $('#historyList tbody tr td').each(function () {
+            $('#historyList tbody tr td').each(function() {
                 textArray.push($(this).text());
             });
 
@@ -76,7 +78,7 @@ var application = async function () {
         }
         $('#myModal').modal('hide');
     });
-    $('#filename').on('change paste keyup', function () {
+    $('#filename').on('change paste keyup', function() {
         const filename = $.trim($('#filename').val());
         if (filename == '') {
             $('#invalidFilename').show();
@@ -92,7 +94,7 @@ var application = async function () {
         if (filename != '') {
             // Save all entered commands to a file
             textArray = [];
-            $('#historyList tbody tr td').each(function () {
+            $('#historyList tbody tr td').each(function() {
                 textArray.push($(this).text());
             });
 
@@ -104,40 +106,39 @@ var application = async function () {
     });
 
     // Bind Clear History button
-    $('#clearBtn').on('click', function () {
+    $('#clearBtn').on('click', function() {
         $('#historyList tbody').empty();
         $('#historyList tbody').append(`
             <tr id = "historyPlaceholder" >
                 <td>Input History</td>
-            </tr >`
-        );
+            </tr >`);
     });
 
     // Bind Load button
-    $('#loadBtn').on('click', function () {
+    $('#loadBtn').on('click', function() {
         $('#loadFile').trigger('click');
     });
 
     // Set up listener for state change in load file
-    $('#loadFile').change(function () {
+    $('#loadFile').change(function() {
         var $input = $(this);
         var inputFiles = this.files;
         if (inputFiles == undefined || inputFiles.lengh == 0) return;
         var inputFile = inputFiles[0];
 
         var reader = new FileReader();
-        reader.onload = function (event) {
+        reader.onload = function(event) {
             $('#clearBtn').click();
             inputLines = event.target.result.split('\n');
-            inputLines.forEach(function (element) {
+            inputLines.forEach(function(element) {
                 addToHistory(element);
             }, this);
         };
-        reader.onloadend = function (event) {
+        reader.onloadend = function(event) {
             // Clear the loaded filename so that it will allow a file of the same name to be uploaded again
-            document.getElementById('loadFile').value = "";
-        }
-        reader.onerror = function (event) {
+            document.getElementById('loadFile').value = '';
+        };
+        reader.onerror = function(event) {
             alert('I AM ERROR: ' + event.target.code);
         };
         reader.readAsText(inputFile);
@@ -263,11 +264,11 @@ function addToHistory(inputText) {
     $('#historyList tbody').append(
         `<tr>
             <th scope="row">` +
-        (count + 1) +
-        `</th>
+            (count + 1) +
+            `</th>
             <td>` +
-        inputText +
-        `</td>
+            inputText +
+            `</td>
         </tr>`
     );
 
