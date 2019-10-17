@@ -107,6 +107,16 @@ var application = async function () {
         }
     });
 
+    // Bind Clear History button
+    $('#clearBtn').on('click', function () {
+        $('#historyList tbody').empty();
+        $('#historyList tbody').append(`
+            <tr id = "historyPlaceholder" >
+                <td>Input History</td>
+            </tr >`
+        );
+    });
+
     // Bind Load button
     $('#loadBtn').on('click', function () {
         $('#loadFile').trigger('click');
