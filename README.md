@@ -5,24 +5,18 @@
 [Slidedeck](https://docs.google.com/presentation/d/1Xc7OqAw_QCwlj7EUV_w8caj6bt-i0rDLMv9rSqkYeyo/edit#slide=id.p)
 
 
-## Quick Testing Instructions
+## About the Project
 
-1. Connect to the same network as the robot
-2. Navigate to path TMI\html\
-3. Run `python -m SimpleHTTPServer 8000`
-4. Open internet browser to localhost:8000
-5. Add "?robot=[IP address of robot]" to web address
+## Prerequisites
 
-## Basic Robot Startup
+## Installation
 
-1. Plug in the robot and charge the battery.
-2. Plug in an ethernet cable to the robots head to ensure that it is on the same local network as the laptop.
-3. Push and hold the button on the front of the robots to power on.
-4. Once robot is awake (it will make a wake-up sound), push the button twice to relax the robot into a safe resting position.
-5. Push the front button once to get the name of the robot and the IP address.
-6. Navigate to this IP address on the laptop (which is on the same network)
-7. Log in to the robot administration webpage with admin credentials (nao/nao).
-8. Perform updates on the robot
+## Usage
+
+## Editing aNAOmate
+
+
+
 
 ## Editing TMI (Touch Move Interface for the Nao Robot)
 
@@ -58,8 +52,8 @@ TODO
 
 * **Quinn Boser** - [Website](#)
 * **Riley Dawson** - [Website](#)
-* **Kory Mathewson** - [Website](https://korymathewson.com)
 * **Josh Whitney** - [Website](#)
+* **Kory Mathewson** - [Website](https://korymathewson.com)
 
 See the list of [contributors](https://github.com/QuinnyB/aNAOmate/contributors) who participated in this project.
 
