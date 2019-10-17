@@ -131,11 +131,16 @@ var application = async function () {
 
         var reader = new FileReader();
         reader.onload = function (event) {
+            $('#clearBtn').click();
             inputLines = event.target.result.split('\n');
             inputLines.forEach(function (element) {
                 addToHistory(element);
             }, this);
         };
+        reader.onloadend = function (event) {
+            // Clear the loaded filename so that it will allow a file of the same name to be uploaded again
+            document.getElementById('loadFile').value = "";
+        }
         reader.onerror = function (event) {
             alert('I AM ERROR: ' + event.target.code);
         };
