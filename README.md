@@ -50,15 +50,17 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+`aNAOmate` is an web-based interface for controlling SoftBank's Aldebaran Nao (V5/V6) robots.
+
 [![Product Name Screen Shot][product-screenshot]](https://QuinnyB.github.io/aNAOmate/)
 
-`aNAOmate` is an web-based interface for controlling SoftBank's Aldebaran Nao (V5/V6) robots.
 
 [Slidedeck](https://docs.google.com/presentation/d/1Xc7OqAw_QCwlj7EUV_w8caj6bt-i0rDLMv9rSqkYeyo/edit#slide=id.p)
 
 ### Built With
 
 * [NAOqi API](http://doc.aldebaran.com/2-1/naoqi/index.html)
+* [Bootstrap](https://getbootstrap.com/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
