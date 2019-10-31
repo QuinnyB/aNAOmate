@@ -1,0 +1,34 @@
+A Hare was making fun of the Tortoise one day for being so slow.
+"Do you ever get anywhere." he asked with a mocking laugh.
+laugh_1;
+"Yes," replied the Tortoise, "and I get there sooner than you think. I'll run you a race and prove it."
+
+Mischievous_1;The Hare was amused by the idea of running a race with the Tortoise.
+So he agreed. 
+
+Stretch_1;The two stretched before running.
+Stretch_1;Can you stretch like the tortoise and hare
+{pause}
+
+The Fox, who agreed to referee, marked the distance.
+CountThree_2;
+Far_1;and started the runners off.
+{pause}Can you run in place as fast as the hare
+
+Binoculars;The Hare was soon far out of sight,
+and to make the Tortoise feel silly, he lay down beside the course to take a nap until the Tortoise caught up.
+exhausted_2;
+{pause}Can you snore loudly like the hare
+
+The Tortoise meanwhile kept going slowly but steadily.
+Suspicious_1;After a while, she passed the place where the Hare was sleeping.
+ 
+But the Hare slept on very peacefully, and when at last he did wake up, the Tortoise was near the goal.
+Surprise_3; 
+The Hare now ran his swiftest, but he could not overtake the Tortoise in time.
+
+TakePicture_1;It was a photo finish.
+Winner_2;The Tortoise won the race, 
+The hare appologized for mocking her.
+And that's the story of the tortoise and the hare.
+bow;
