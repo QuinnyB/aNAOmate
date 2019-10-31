@@ -58,10 +58,7 @@
 
 ### Built With
 
-* [React](https://reactjs.org/)
-* [Semantic UI](https://semantic-ui.com/)
-
-
+* [NAOqi API](http://doc.aldebaran.com/2-1/naoqi/index.html)
 
 <!-- GETTING STARTED -->
 ## Getting Started
