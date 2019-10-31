@@ -22,8 +22,6 @@
     <a href="https://github.com/QuinnyB/aNAOmate"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://QuinnyB.github.io/aNAOmate">View Demo</a>
-    ·
     <a href="https://github.com/QuinnyB/aNAOmate/issues">Report Bug</a>
     ·
     <a href="https://github.com/QuinnyB/aNAOmate/issues">Request Feature</a>
