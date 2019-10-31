@@ -11,7 +11,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/QuinnyB/aNAOmate">
-    <img src="src/images/robotIcon.png" alt="Logo" width="80" height="80">
+    <img src="src/html/images/robotIcon.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">aNAOmate</h3>
