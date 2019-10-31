@@ -86,7 +86,7 @@ git clone https:://github.com/QuinnyB/aNAOmate.git
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-For examples, please refer to the [Documentation](https:://github.com/QuinnyB/aNAOmate/Wiki)
+For examples, please refer to the [Documentation](https:://github.com/QuinnyB/aNAOmate/wiki)
 
 <!-- ROADMAP -->
 ## Roadmap
