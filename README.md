@@ -82,15 +82,11 @@ npm install npm@latest -g
 ```sh
 git clone https:://github.com/QuinnyB/aNAOmate.git
 ```
-2. Install NPM packages
-```sh
-npm install
-```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-<!--_For more examples, please refer to the [Documentation](https://example.com)_-->
+For examples, please refer to the [Documentation](https:://github.com/QuinnyB/aNAOmate/Wiki)
 
 <!-- ROADMAP -->
 ## Roadmap
