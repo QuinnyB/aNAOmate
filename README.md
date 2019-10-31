@@ -187,4 +187,4 @@ The authors of this project would like to graciously acknowledge to continued su
 [license-url]: https://github.com/QuinnyB/aNAOmate/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/josh-whitney-1b2241b4/
-[product-screenshot]: src/images/screenshot.png
+[product-screenshot]: https://user-images.githubusercontent.com/22296749/67176047-b686d380-f385-11e9-8a8c-473565b21551.png
