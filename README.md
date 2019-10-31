@@ -1,22 +1,103 @@
-# aNAOmate
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+
+
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/QuinnyB/aNAOmate">
+    <img src="src/images/icon.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">aNAOmate</h3>
+
+  <p align="center">
+    A web-based interface for controlling SoftBank's Aldebaran Nao (V5/V6) robots.
+    <br />
+    <a href="https://github.com/QuinnyB/aNAOmate"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://QuinnyB.github.io/aNAOmate">View Demo</a>
+    ·
+    <a href="https://github.com/QuinnyB/aNAOmate/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/QuinnyB/aNAOmate/issues">Request Feature</a>
+  </p>
+</p>
+
+
+
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
+
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Usage](#usage)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
+* [Contact](#contact)
+* [Acknowledgements](#acknowledgements)
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+[![Product Name Screen Shot][product-screenshot]](https://QuinnyB.github.io/aNAOmate/)
 
 `aNAOmate` is an web-based interface for controlling SoftBank's Aldebaran Nao (V5/V6) robots.
 
 [Slidedeck](https://docs.google.com/presentation/d/1Xc7OqAw_QCwlj7EUV_w8caj6bt-i0rDLMv9rSqkYeyo/edit#slide=id.p)
 
+### Built With
 
-## About the Project
+* [React](https://reactjs.org/)
+* [Semantic UI](https://semantic-ui.com/)
 
-## Prerequisites
 
-## Installation
 
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+
+Things you need to use the software and how to install them.
+* npm
+```sh
+npm install npm@latest -g
+```
+
+### Installation
+ 
+1. Clone the repo
+```sh
+git clone https:://github.com/QuinnyB/aNAOmate.git
+```
+2. Install NPM packages
+```sh
+npm install
+```
+
+<!-- USAGE EXAMPLES -->
 ## Usage
 
-## Editing aNAOmate
+<!--_For more examples, please refer to the [Documentation](https://example.com)_-->
 
+<!-- ROADMAP -->
+## Roadmap
 
-
+See the [open issues](https://github.com/QuinnyB/aNAOmate/issues) for a list of proposed features (and known issues).
 
 ## Editing TMI (Touch Move Interface for the Nao Robot)
 
@@ -57,13 +138,55 @@ TODO
 
 See the list of [contributors](https://github.com/QuinnyB/aNAOmate/contributors) who participated in this project.
 
-## Start Contributing
-The guide for contributors can be found [here](https://github.com/QuinnyB/aNAOmate/blob/master/CONTRIBUTING.md). It covers everything you need to know to start contributing to `aNAOmate`.
+<!-- CONTRIBUTING -->
+## Contributing
 
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+
+
+<!-- LICENSE -->
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
+Distributed under the MIT License. See `LICENSE` for more information.
 
+
+
+<!-- CONTACT -->
+## Contact
+
+Josh Whitney - [@JoshJRWhitney](https://twitter.com/JoshJRWhitney) - joshjrwhitney@gmail.com
+
+Project Link: [https://github.com/QuinnyB/aNAOmate](https://github.com/QuinnyB/aNAOmate)
+
+
+
+<!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
 The authors of this project would like to graciously acknowledge to continued support of the community.
+
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/QuinnyB/aNAOmate.svg?style=flat-square
+[contributors-url]: https://github.com/QuinnyB/aNAOmate/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/QuinnyB/aNAOmate.svg?style=flat-square
+[forks-url]: https://github.com/QuinnyB/aNAOmate/network/members
+[stars-shield]: https://img.shields.io/github/stars/QuinnyB/aNAOmate.svg?style=flat-square
+[stars-url]: https://github.com/QuinnyB/aNAOmate/stargazers
+[issues-shield]: https://img.shields.io/github/issues/QuinnyB/aNAOmate.svg?style=flat-square
+[issues-url]: https://github.com/QuinnyB/aNAOmate/issues
+[license-shield]: https://img.shields.io/github/license/QuinnyB/aNAOmate.svg?style=flat-square
+[license-url]: https://github.com/QuinnyB/aNAOmate/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/josh-whitney-1b2241b4/
+[product-screenshot]: src/images/screenshot.png
