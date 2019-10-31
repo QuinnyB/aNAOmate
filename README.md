@@ -85,12 +85,7 @@ git clone https:://github.com/QuinnyB/aNAOmate.git
 
 For examples, please refer to the [Documentation](https://github.com/QuinnyB/aNAOmate/wiki)
 
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/QuinnyB/aNAOmate/issues) for a list of proposed features (and known issues).
-
-## Editing TMI (Touch Move Interface for the Nao Robot)
+### Editing TMI (Touch Move Interface for the Nao Robot)
 
 1. Make changes in the `TMI` directory
 2. Test the changes by following the quick testing instructions.
@@ -108,17 +103,22 @@ See the [open issues](https://github.com/QuinnyB/aNAOmate/issues) for a list of 
 9. Navigate to `http://$ROBOT_IP/apps/TMI` to see developed the interface.
 10. This interface should match the tested changes in Step 2.
 
-## Using the aNAOmate interface
+### Using the aNAOmate interface
 
 TODO
 
-## Behaviours
+### Behaviours
 
 TODO
 
-## Configure Development Environment
+### Configure Development Environment
 
 TODO
+
+<!-- ROADMAP -->
+## Roadmap
+
+See the [open issues](https://github.com/QuinnyB/aNAOmate/issues) for a list of proposed features (and known issues).
 
 ## Authors
 
@@ -140,14 +140,10 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-
 
 <!-- CONTACT -->
 ## Contact
@@ -155,8 +151,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Josh Whitney - [@JoshJRWhitney](https://twitter.com/JoshJRWhitney) - joshjrwhitney@gmail.com
 
 Project Link: [https://github.com/QuinnyB/aNAOmate](https://github.com/QuinnyB/aNAOmate)
-
-
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
