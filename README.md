@@ -19,7 +19,7 @@
   <p align="center">
     A web-based interface for controlling SoftBank's Aldebaran Nao (V5/V6) robots.
     <br />
-    <a href="https://github.com/QuinnyB/aNAOmate"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/QuinnyB/aNAOmate/wiki"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/QuinnyB/aNAOmate/issues">Report Bug</a>
