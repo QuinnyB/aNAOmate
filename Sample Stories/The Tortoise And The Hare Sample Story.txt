@@ -1,6 +1,6 @@
 A Hare was making fun of the Tortoise one day for being so slow.
 "Do you ever get anywhere." he asked with a mocking laugh.
-laugh;
+laugh_1;
 "Yes," replied the Tortoise, "and I get there sooner than you think. I'll run you a race and prove it."
 
 Mischievous_1;The Hare was amused by the idea of running a race with the Tortoise.
