@@ -33,14 +33,15 @@ var application = async function() {
     $('#playBtn').click(() => {
         if (this.paused) {
             this.paused = false;
-        } else {
-            if (!this.inputManagerRunning) {
-                inputManager();
-            }
+        }
+
+        if (!this.inputManagerRunning) {
+            inputManager();
         }
     });
 
     $('#stopBtn').click(() => {
+        this.paused = true;
         this.robotController.executeCommand('stop');
     });
 
@@ -52,7 +53,7 @@ var application = async function() {
         this.robotController.executeCommand('rest');
     });
 
-    $('sidebarItem').click((event) => {
+    $('sidebarItem').click(event => {
         console.log(event.target);
     });
     $('#myModalForm').on('submit', function(event) {
@@ -106,6 +107,9 @@ var application = async function() {
             <tr id = "historyPlaceholder" >
                 <td>Input History</td>
             </tr >`);
+
+        // Take it out of the PAUSE state
+        paused = false;
     });
 
     // Bind Load button
@@ -139,7 +143,7 @@ var application = async function() {
     });
 
     // Bind Enter key press to same callback as Submit button, when focussed on input text field,
-    $('#inputTextArea').keydown((event) => {
+    $('#inputTextArea').keydown(event => {
         const keycode = event.keyCode ? event.keyCode : event.which;
         // Bind Enter key press to same callback as Submit button, when focussed on input text field
         if (keycode == '13') {
@@ -160,12 +164,12 @@ var application = async function() {
 async function populateSidebar(behaviors) {
     let { sitBehaviors, standBehaviors } = behaviors;
 
-    standBehaviors = standBehaviors.map((bhv) => {
+    standBehaviors = standBehaviors.map(bhv => {
         return bhv.split('/').pop();
     });
     standBehaviors.sort();
 
-    standBehaviors.forEach((bhv) => {
+    standBehaviors.forEach(bhv => {
         $('#standSubmenu').append(`
             <li class="sidebarItem">
             <a>${bhv}</a>
@@ -173,12 +177,12 @@ async function populateSidebar(behaviors) {
         `);
     });
 
-    sitBehaviors = sitBehaviors.map((bhv) => {
+    sitBehaviors = sitBehaviors.map(bhv => {
         return bhv.split('/').pop();
     });
     sitBehaviors.sort();
 
-    sitBehaviors.forEach((bhv) => {
+    sitBehaviors.forEach(bhv => {
         $('#sitSubmenu').append(`
             <li>
             <a href="#">${bhv}</a>
@@ -263,7 +267,7 @@ function addToHistory(inputText) {
             <td>` +
             inputText +
             `</td>
-        </tr>`
+        </tr>`,
     );
 
     // Scroll until the new row is in view
@@ -303,7 +307,7 @@ function handleInput(inputText) {
 }
 
 async function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function inputParse(inputString) {
